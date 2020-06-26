@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ko">
+	<meta charset="utf-8">
+	<meta name="author" content="">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<title>파일목록</title>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="base.css" />
+	
+	<style>
+		html, body {height:100%;}
+		* {margin:0; padding:0}
+		body {font-size:13px; line-height:1.4; position:relative; overflow:hidden;}
+		a {text-decoration:none;}
+
+		#wrapper {height:100%; }
+		#container {padding:30px; overflow-y:scroll; height:calc(100% - 60px); box-sizing:border-box; position:relative;}
+
+		#header {background:#fff; color:#444; padding:15px 30px; display:flex; align-items:center; box-sizing:border-box; border-bottom:2px solid #01b455}
+		.project_title {font-size:18px; color:#01b455; margin-right:30px; }
+		.section_title {font-size:16px; margin-bottom:10px; font-weight:bold; }
+		.menu-toggle {position:absolute; right:30px; top:17px; }
+
+		/* table */
+		table {border-collapse:collapse; border-spacing:0; border-left:1px solid #ddd; border-top:1px solid #ddd; width:100%; }
+		
+		th, td {border-right:1px solid #ddd; border-bottom:1px solid #ddd; padding:3px 5px; height:24px; box-sizing:border-box; text-align:center;}
+		th {font-weight:bold; background-color:#fcfcfc}
+		tbody th {font-weight:normal;}
+		.al {text-align:left;}
+		.link {color:blue}
+
+		/* 탭 */
+		.tab_btns {}
+		.tab_btns::after {content:""; display:block; width:0; height:0; clear:both;}
+		.tab_btns li {float:left; margin-left:-1px; position:relative; }
+		.tab_btns li a {display:block; padding: 0 20px  ; position:relative; line-height:26px; box-sizing:border-box; background:#fff; border:1px solid #ddd; color:#444}
+		.tab_btns li a.active {color:#fff; font-weight:bold;background:#01b455;  border:1px solid #01b455;}
+		.tab_btns li:first-child a {border-top-left-radius: 5px; border-bottom-left-radius: 5px;}
+		.tab_btns li:last-child a {border-top-right-radius: 5px; border-bottom-right-radius: 5px;}
+		.tab_box {display:none; position:relative; padding-bottom:30px;}
+		.tab_box.on {display:block;}
+
+		.fc-red {color:#ff0000}
+	</style>
+	</head>
+<body>
+	<div id="wrapper">
+
+		<div id="header">
+			<h1 class="project_title">파일목록</h1>
+			
+			<ul class="tab_btns">
+				<li><a href="#list01" class="active">00. 템플릿</a></li>
+				<li><a href="#list02">탭2</a></li>
+				<li><a href="#list03">탭3</a></li>			
+			</ul>
+			<div class="menu-toggle">
+				<button class="menu_open">전체열기</button>
+				<button class="menu_close">전체닫기</button>
+			</div>
+		</div>
+	
+
+		<!-- container -->
+		<div id="container">
+			
+		<!-- 탭 시작 -->							
+		<div class="tab_list" >
+				
+			<!-- 탭1 시작 -->
+			<div class="tab_box on" id="list01" >
+				
+				<h2 class="section_title">00. 템플릿</h2>
+				<table>
+					<colgroup>
+						<col style="width:150px">
+						<col style="width:250px">
+						<col style="width:150px">
+						<col style="width:150px">
+						<col style="width:150px">
+						<col style="width:150px">
+						<col>
+						<col style="width:150px">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">구분</th>
+							<th scope="col">화면명</th>
+							<th scope="col">화면ID</th>
+							<th scope="col">완료예정일자</th>
+							<th scope="col">완료일자</th>
+							<th scope="col">작업자</th>
+							<th scope="col">경로</th>
+							<th scope="col">비고</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">화면유형</th>
+							<td class="al">화면명</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td class="al"><a href="#" class="link" target="_pages">파일경로</a></td>
+							<td>작업완료</td>
+						</tr>
+						<tr>
+							<th scope="row">화면유형</th>
+							<td class="al">화면명</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td class="al"><a href="#" class="link" target="_pages">파일경로</a></td>
+							<td>작업완료</td>
+						</tr>
+					
+					</tbody>
+				</table>
+
+			</div><!--.tab_box-->
+			<!-- 탭1 끝 -->
+
+			<!-- 탭2 시작 -->
+			<div class="tab_box" id="list02" >
+				
+				<h2 class="section_title">탭2</h2>
+				<table>
+					<colgroup>
+						<col style="width:150px">
+						<col style="width:250px">
+						<col style="width:150px">
+						<col style="width:150px">
+						<col style="width:150px">
+						<col style="width:150px">
+						<col>
+						<col style="width:150px">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">구분</th>
+							<th scope="col">화면명</th>
+							<th scope="col">화면ID</th>
+							<th scope="col">완료예정일자</th>
+							<th scope="col">완료일자</th>
+							<th scope="col">작업자</th>
+							<th scope="col">경로</th>
+							<th scope="col">비고</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">메뉴1</th>
+							<td class="al">화면명</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td class="al"><a href="#" class="link" target="_pages">파일경로</a></td>
+							<td>작업완료</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+			</div><!--.tab_box-->
+			<!-- 탭2 끝 -->
+
+			<!-- 탭3 시작 -->
+			<div class="tab_box" id="list03" >
+			
+				<h2 class="section_title">탭3</h2>
+
+				<table>
+					<colgroup>
+						<col style="width:150px">
+						<col style="width:250px">
+						<col style="width:150px">
+						<col style="width:150px">
+						<col style="width:150px">
+						<col style="width:150px">
+						<col>
+						<col style="width:150px">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">구분</th>
+							<th scope="col">화면명</th>
+							<th scope="col">화면ID</th>
+							<th scope="col">완료예정일자</th>
+							<th scope="col">완료일자</th>
+							<th scope="col">작업자</th>
+							<th scope="col">경로</th>
+							<th scope="col">비고</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">메뉴1</th>
+							<td class="al">화면명</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td class="al"><a href="#" class="link" target="_pages">파일경로</a></td>
+							<td>작업완료</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div><!--.tab_box-->
+			<!-- 탭3 끝 -->
+
+
+		
+		</div><!-- 탭 끝 -->
+
+		
+		
+			
+
+		<script>
+			$(function(){ 
+				if($('.tab_list')) {
+					$('.tab_btns a').on('click' , function(e) {
+						e.preventDefault();
+						var clickMenu = $(this).attr('href');
+						$(this).addClass('active');
+						$(this).parent().siblings('li').find("a.active").removeClass('active');
+					// $('.tab_btns a').not($(this)).removeClass('on');
+					
+						$(clickMenu).addClass('on');
+						$(clickMenu).siblings('.tab_box.on').removeClass('on');
+					// $('.tab_box').not($(clickMenu)).removeClass('on');
+					})
+				}
+
+				$(".depth1_title").bind("click", function() {
+					$(this).toggleClass("showing");
+				});
+
+			
+				$(".menu_open").bind("click", function() {			
+					$(".depth1_title").addClass("showing");			
+				});
+
+				$(".menu_close").bind("click", function() {			
+					$(".depth1_title").removeClass("showing");			
+				});
+			});
+			
+		</script>
+
+		
+
+
+		</div><!-- //container -->
+	</div>
+</body>
+</html>
