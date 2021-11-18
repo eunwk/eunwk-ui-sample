@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, target-densitydpi=medium-dpi">
+    <title>바닐라JS로 크롬앱 만들기</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        body {
+            background: rgb(13, 15, 37);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+       
+        .js-form,
+        .js-toDoForm {
+            background: #fff;
+            padding: 5px 30px;
+            border-radius: 30px;
+            background: transparent;
+            border: 1px solid rgba(255,255, 255, 0.15);
+            margin-bottom: 15px;
+            width: 90%;
+            max-width: 300px;
+            height: 35px; 
+            display: flex;
+            align-items: center;
+        }
+
+        .js-form,
+        .js-greetings {
+            display: none;
+        }
+
+        .js-greetings {
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+
+        input {
+            width: 100%;
+            height: 25px;
+            background: transparent;
+            color:#fff;
+            border: 0;
+        }
+
+        .showing {
+            display: flex;
+            
+        }
+
+        .js-toDoList {
+            border-bottom: 1px solid rgba(255,255, 255, 0.15);
+            width: 90%;
+            max-width: 350px;
+            margin-bottom: 40px;
+            padding-top: 20px;
+            padding: 20px 30px;
+        }
+
+        .js-toDoList li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .js-toDoList button {
+            padding: 0 15px;
+            border: 1px solid #ddd;
+            background: transparent;
+            color: #fff;
+            border-radius: 12px;
+            height: 26px;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .js-clock {
+            margin-bottom: 100px;
+        }
+
+        .js-clock h2 {
+            position: relative;
+            display: block;
+            color: #fff;
+            text-align: center;
+            margin: 10px 0;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.8em;
+            letter-spacing: 2px;
+        }
+
+        .js-clock #time {
+            display: flex;
+        }
+
+        .js-clock #time div {
+            position: relative;
+            margin: 0 5px;
+            -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, #0004 );
+        }
+
+        .js-clock #time div span {
+            position: relative;
+            display: block;
+            width: 80px;
+            height: 60px;
+            background: #2196f3;
+            color: #fff;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            z-index: 10;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .js-clock #time div span:nth-child(2) {
+            height: 30px;
+            font-size: 0.7em;
+            letter-spacing: 0.2em;
+            z-index: 9;
+            box-shadow: none;
+            background: #127fd6;
+            text-transform: uppercase;
+        }
+
+        .js-clock #time div:nth-last-child(2) span {
+            background: #ff006a;
+        }
+
+        .js-clock #time div:nth-last-child(2) span:nth-child(2) {
+            background: #ec0062;
+        }
+
+        .js-clock #time div:nth-last-child(1) span {
+            position: absolute;
+            bottom: 0;
+            width: 60px;
+            height: 40px;
+            font-size: 1.5em;
+            background: #fff;
+            color: #000;
+            -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="js-clock">
+        <h2>The time is now</h2>
+        <div id="time">
+            <div><span id="hour">00</span><span>Hours</span></div>
+            <div><span id="minutes">00</span><span>Minutes</span></div>
+            <div><span id="seconds">00</span><span>Seconds</span></div>
+            <div><span id="ampm">AM</span></div>
+        </div>
+    </div>
+
+    <form class="js-form">
+        <input type="text" placeholder="이름을 입력하세요">
+    </form>
+    <p class="js-greetings"></p>
+
+    <form class="js-toDoForm">
+        <input type="text" placeholder="할 일을 입력하세요">
+    </form>
+    <ul class="js-toDoList">
+        <!-- 동적추가 영역-->
+    </ul>
+    <p class="js-weather"></p>
+
+
+    <script>
+
+        /*****************************************************************
+         * 1. 현재시간 표시
+        /*****************************************************************/
+        const hour = document.querySelector("#hour");
+        const minutes = document.querySelector("#minutes");
+        const seconds = document.querySelector("#seconds");
+        const ampm = document.querySelector("#ampm");
+
+
+        function getTime() {
+            console.log("setInterval");
+            let day = new Date();
+            let h = day.getHours();
+            let m = day.getMinutes();
+            let s = day.getSeconds();
+            let am = 'AM';
+
+            if (h > 12) {
+                h = h - 12;
+                am = 'PM';
+            }
+
+            h = (h < 10) ? `0${h} ` : h;
+            m = (m < 10) ? `0${m} ` : m;
+            s = (s < 10) ? `0${s} ` : s;
+
+            // console.log(hh, mm, ss);
+            hour.innerHTML = h;
+            minutes.innerHTML = m;
+            seconds.innerHTML = s;
+            ampm.innerHTML = am;
+        }
+
+
+        /*****************************************************************
+         * 2. 폼에 이름을 입력하면 인사말 출력하고, localStorage에 이름을 저장   
+        /*****************************************************************/
+        // 인사
+        const form = document.querySelector(".js-form"),
+            input = form.querySelector("input"),
+            greeting = document.querySelector(".js-greetings");
+
+        const USER_LS = "currentUser",
+            SHIWING_CN = "showing";
+
+        // localStorage 저장
+        function saveName(text) {
+            localStorage.setItem(USER_LS, text)
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const currentValue = input.value;
+            console.log(currentValue);
+            paintGreeting(currentValue);
+            saveName(currentValue);
+        }
+
+        function askForName() {
+            form.classList.add(SHIWING_CN);
+            form.addEventListener("submit", handleSubmit)
+        }
+
+        function paintGreeting(text) {
+            form.classList.remove(SHIWING_CN);
+            greeting.classList.add(SHIWING_CN);
+            greeting.innerText = `Hello ${text}`;
+        }
+
+        function loadName() {
+            const currentUser = localStorage.getItem(USER_LS);  //currentUser 란 key 가 있는지 확인
+            console.log(currentUser); //null
+
+            if (currentUser === null) {
+                //없으면
+                askForName();
+            } else {
+                //있으면
+                paintGreeting(currentUser);
+            }
+        }
+
+
+        /*****************************************************************
+         * 3. toDoList
+        /*****************************************************************/
+        const toDoForm = document.querySelector(".js-toDoForm"),
+            toDoInput = toDoForm.querySelector("input"),
+            toDoList = document.querySelector(".js-toDoList");
+
+        const TODOS_LS = "toDos";
+        let toDos = [];
+
+        function deleteToDo(event) {
+            //화면에서 제거
+            const btn = event.target;
+            const li = btn.parentNode;
+            toDoList.removeChild(li);
+
+            //localStorage에서 제거
+            //filter는 배열을 돌며,  true 인 요소들만 모아 새로운 배열을 만든다. cleanToDos 에 새로운 배열을 담는다.
+            const cleanToDos = toDos.filter(function (toDo) {
+                return toDo.id !== parseInt(li.id);  //Storage에서 가져온 id 값은 문자열이므로 숫자로 바꿔준다.
+            });
+            toDos = cleanToDos;
+            saveToDos()
+        }
+
+        function saveToDos() {
+            localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
+        }
+
+        function paintToDo(text) {
+            // li 를 생성해 화면에 출력한다.
+            const li = document.createElement("li");
+            const delBtn = document.createElement("button");
+            delBtn.innerText = "삭제";
+            const span = document.createElement("span");
+            const newID = toDos.length + 1; //아이디 1부터 생성
+            span.innerText = text;
+            li.id = newID;
+            li.addEventListener("click", deleteToDo)
+            li.appendChild(span);
+            li.appendChild(delBtn);
+            toDoList.appendChild(li);
+
+            //localStorage 에 저장하기 위해 객체 생성
+            const toDoOjb = {
+                text: text,
+                id: newID
+            }
+            //toDos 배열에 객체를 저장
+            toDos.push(toDoOjb);
+            saveToDos();
+        }
+
+        function handleToDoListSubmit(event) {
+            event.preventDefault();
+            const currentValue = toDoInput.value;
+            paintToDo(currentValue);
+            toDoInput.value = "";
+        }
+
+        // function something(toDo) {
+        //     console.log(toDo.text);
+        //     paintToDo(toDo.text)
+        // }
+
+        function loadToDos() {
+            const loadedToDos = localStorage.getItem(TODOS_LS);
+
+            if (loadedToDos !== null) {
+                //있으면
+                console.log(loadedToDos); //문자열
+                const parseToDos = JSON.parse(loadedToDos);
+                console.log(parseToDos); //배열
+
+                // parseToDos.forEach(something); 함수형태로 호출
+                parseToDos.forEach(function (toDo) {
+                    paintToDo(toDo.text);
+                })
+
+            } else {
+                //없으면
+            }
+        }
+
+
+        /*****************************************************************
+         * 4. 위치정보 가져오기, 날씨 API 사용
+        /*****************************************************************/
+        const weather = document.querySelector(".js-weather");
+        const COORDS = "coords";
+        const API_KEY = "cc91baca40650482cf369355bf83e194";
+
+        //날씨 정보 가져오기
+        function getWeather(lat, lng) {
+            //fetch(가져올 데이터)
+            //.then() 데이터를 모두 가져온 후 실행
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric`)
+                .then(function (response) {
+                    // console.log(response.json()) //콘솔에 Promise {<pending>} 이라고 표시  처리중이란 뜻임.
+                    return response.json();
+                })
+                .then(function (json) {
+                    // console.log(json);
+                    const temperature = json.main.temp;
+                    const place = json.name;
+                    weather.innerText = `${temperature} @ ${place}`;
+                });
+        }
+
+        //lacalStorage에 위치정보 저장하기
+        function saveCoords(coordsObj) {
+            localStorage.setItem(COORDS, JSON.stringify(coordsObj));
+        };
+
+        function handleGeoSucces(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            const coordsObj = {
+                latitude,   // 축약식  latitude : latitude 와 같음.
+                longitude
+            }
+            saveCoords(coordsObj);
+            getWeather(latitude, longitude);
+        }
+
+        function handleGeoError() {
+            console.log("Cant access geo location!")
+        }
+
+        //위치정보 알아오기
+        function askForCoords() {
+            navigator.geolocation.getCurrentPosition(handleGeoSucces, handleGeoError); //성공시 콜백함수, 실패시 콜백함수
+        }
+
+        function loadCoords() {
+            const loadedCoords = localStorage.getItem(COORDS);
+
+            if (loadedCoords === null) {
+                askForCoords();
+            } else {
+                //getWeather
+                const parseCoords = JSON.parse(loadedCoords);
+                getWeather(parseCoords.latitude, parseCoords.longitude);
+            }
+        }
+
+        /*****************************************************************
+         * 공통 초기화 영역
+        /*****************************************************************/
+        function init() {
+            //시계
+            getTime();
+            setInterval(getTime, 1000);
+
+            // 인사, localStorage에 이름 저장
+            loadName();
+
+            //toDoList
+            loadToDos();
+            toDoForm.addEventListener("submit", handleToDoListSubmit);
+
+            //날씨
+            loadCoords();
+        }
+
+        init()
+    </script>
+</body>
+
+</html>
