@@ -77,12 +77,15 @@ a {
     margin-right: 15px;
 }
 
+
 .section_title {
     font-size: 16px;
     margin-bottom: 10px;
     font-weight: 500;
 }
-
+table + .section_title {
+    margin-top: 40px;
+}
 /* .menu-toggle {
     display: inline-flex;
 } */
