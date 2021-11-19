@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typography 애니메이션 : Smoke Text with CSS & Vanila Javascript</title>
+    <script src="./html/samp/ani/anime.min.js"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
+
+    section {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #130e13;
+        overflow: hidden;
+    }
+
+    .text {
+        position: relative;
+        text-align: center;
+        color: #fff;
+        margin: 40px;
+        max-width: 800px;
+        line-height: 1.5;
+        user-select: none;
+        font-size: 1.5em;
+    }
+
+    .text span {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .text span.active {
+        animation: smoke 2s linear forwards;
+        transform-origin: bottom;
+    }
+
+    @keyframes smoke {
+        0% {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+        }
+
+        50% {
+            opacity: 1;
+            pointer-events: none;
+        }
+
+        100% {
+            opacity: 0;
+            filter: blur(20px);
+            transform: translateX(300px) translateY(-300px) rotate(720deg) scale(4);
+        }
+    }
+</style>
+
+<body>
+    <section>
+        <p class="text">학교를 다닐 때 유독 문학 수업을 좋아했다. 그 중 현대시 수업은 매 학기마다 빼놓지 않고 듣는 수업 중 하나였다. 그때 교수님은
+            말씀하셨다. 시는 인간의 감정이 담긴 가장
+            인간적인 문학이라고, 그러니 시를 통해 감정을 배우고 인생을 배우라고. 이후 나는 시를 통해 행복, 사랑, 이별, 슬픔 등의 감정을 배우기 시작했다.
+            그렇게 시는 내 인생에 스며들었다.
+        </p>
+    </section>
+</body>
+
+<script>
+    //now, split text into words
+    const text = document.querySelector('.text');
+    text.innerHTML = text.textContent.replace(/\S/g, "<span>$&</span>");
+
+    //now, add active class on hoveref <span> tag
+    const letters = document.querySelectorAll('span');
+    for (let i = 0; i < letters.length; i++) {
+        letters[i].addEventListener('mouseover', function () {
+            letters[i].classList.add('active')
+        })
+    }
+</script>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onlineTutorials | Scroll Slider</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 2000px
+        }
+
+        .banner {
+            margin: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .banner video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .banner #bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            /* 하트 다운로드 https://www.flaticon.com/free-icon/heart_1077086# */
+            background: #fff url(/html/inc/img/svg/heart.svg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100px;
+            mix-blend-mode: screen;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <video autoplay="" muted="" loop="">
+            <source
+                src="https://player.vimeo.com/external/428972489.sd.mp4?s=c217d6416b0329c27d8c69f3587c639238cbacc9&amp;profile_id=139&amp;oauth2_token_id=57447761"
+                type="video/mp4">
+        </video>
+        <div id="bg"></div>
+    </div>
+
+    <!-- <div class="container">
+                   <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h2>
+                   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis dolores at placeat repellendus veritatis commodi optio porro iure, repreheLorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis dolores at placeat repellendus veritatis commodi optio porro iure, reprehe</p>
+                   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis dolores at placeat repellendus veritatis commodi optio porro iure, reprehe</p>
+                   <br/>	<br/>
+                   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis dolores at placeat repellendus veritatis commodi optio porro iure, repreheLorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis dolores at placeat repellendus veritatis commodi optio porro iure, reprehe</p>
+                   <br/>	<br/>
+                   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis dolores at placeat repellendus veritatis commodi optio porro iure, reprehe</p>
+                   </div> -->
+    <script>
+        let bg = document.querySelector("#bg");
+        window.addEventListener("scroll", function () {
+            var value = window.scrollY;
+            bg.style.backgroundSize = 100 + value * 2 + "px";
+        })
+    </script>
+</body>
+
+</html>

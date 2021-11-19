@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tweenmax for GSAP | 마우스 커서를 따라다니는...</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    section {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        background: #111;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    section h2 {
+        font-size: 6em;
+        position: relative;
+        color: #fff;
+    }
+
+    svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+</style>
+
+<body>
+    <section>
+        <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <defs></defs>
+            <path id="myID" d="" />
+        </svg>
+        <h2>Wavy Background</h2>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/wavify@1.0.0/wavify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/wavify@1.0.0/jquery.wavify.js"></script>
+    <script>
+        // For Vanilla JavaScript
+        // var myWave = wavify( document.querySelector('#myId'), {
+        // height: 60,
+        // bones: 3,
+        // amplitude: 40,
+        // color: 'rgba(150, 97, 255, .8)',
+        // speed: .25
+        // })
+
+        // For jQuery
+        var myWave = $('#myID').wavify({
+            height: 600,
+            bones: 4,
+            amplitude: 40,
+            color: 'rgba(150, 97, 255, .8)',
+            speed: .25
+        });
+    </script>
+</body>
+
+</html>

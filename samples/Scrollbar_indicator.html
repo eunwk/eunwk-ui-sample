@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onlineTutorials | Create Page Scroll Progress Bar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            z-index: 1;
+            width: 100%;
+            background-color: #f1f1f1;
+            text-indent: 50px
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: #ccc;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #04AA6D;
+            width: 0%;
+        }
+
+        .text {
+            font-size: 2em;
+            padding: 150px 50px 50px;
+            height: 200vh;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="header">
+              <h2>Scroll Indicator</h2>
+              <div class="progress-container">
+                <div class="progress-bar" id="myBar"></div>
+                 
+            </div>
+        </div>
+        <div class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis tempora
+            officiis sequi incidunt, iusto odit minus voluptate eaque quae est dicta.
+            Laudantium, alias! Asperiores excepturi amet exercitationem magnam neque ipsa!
+            Tempore rerum ut nihil possimus, eligendi animi architecto odio obcaecati ab<br />
+            <br />laudantium vero sit deleniti, debitis provident non impedit numquam doloribus
+            iste soluta officia aut! Pariatur similique <br /> <br />molestiae repellat eligendi
+            deserunt accusantium minima quo cumque ipsa dicta, sed possimus doloremque ipsam a.
+            Similique velit atque assumenda? Facilis, magnam dolor unde quia error
+            exercitationem dolores quod doloremque enim quidem vero, iure, hic sunt explicabo
+            impedit odio aliquid adipisci illo maiores fugit. <br /> <br />
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis tempora officiis
+            sequi incidunt, iusto odit minus voluptate eaque quae est dicta. Laudantium, alias!
+            Asperiores excepturi amet exercitationem magnam neque ipsa! Tempore rerum ut nihil
+            possimus, eligendi animi architecto odio obcaecati ab laudantium vero sit deleniti,
+            debitis provident non impedit numquam <br /> <br />doloribus iste soluta officia
+            aut! Pariatur similique molestiae repellat eligendi deserunt accusantium minima quo
+            cumque ipsa dicta, sed possimus doloremque ipsam a. Similique velit atque assumenda?
+            Facilis, magnam dolor unde quia error exercitationem dolores quod doloremque enim
+            quidem vero, iure, hic sunt explicabo impedit odio aliquid adipisci illo maiores
+            fugit.
+        </div>
+        <script>
+            // let progress =  document.getElementById('progressbar');
+            // let percent =  document.getElementById('percent');
+            // let totalHeight = document.body.scrollHeight - window.innerHeight;
+
+            // window.onscroll = function() {
+            // 	let progressHeight = (window.pageYOffset / totalHeight) * 100;
+            // 	progress.style.height = progressHeight + "%";
+            // 	percent.innerHTML = "Page Scrolled " + Math.round(progressHeight) + "%"
+            // }
+
+            window.onscroll = function () { myFunction() };
+
+            function myFunction() {
+                var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                var scrolled = (winScroll / height) * 100;
+                document.getElementById("myBar").style.width = scrolled + "%";
+            }
+        </script>
+</body>
+
+</html>

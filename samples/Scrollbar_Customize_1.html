@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onlineTutorials | Create Page Scroll Progress Bar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        section {
+            padding: 50px;
+            background: #000;
+        }
+
+        section h1 {
+            font-size: 3.5em;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        section p {
+            font-size: 1.2em;
+            color: #fff;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+
+        #scrollPath {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 10px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #progressbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 10px;
+            /* height: 50%; */
+            background: linear-gradient(to top, #008aff, #00ffe7);
+            animation: animate 5s linear infinite;
+        }
+
+        @keyframes animate {
+
+            0%,
+            100% {
+                filter: hue-rotate(0deg)
+            }
+
+            50% {
+                filter: hue-rotate(360deg)
+            }
+        }
+
+        #progressbar::before,
+        #progressbar::after {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, #008aff, #00ffe7);
+            filter: blur(10px)
+        }
+
+        #progressbar::after {
+            filter: blur(30px)
+        }
+
+        #percent {
+            position: fixed;
+            top: 50%;
+            right: 15px;
+            color: #fff;
+            font-size: 2em;
+            transform: translateY(-50%) rotateX(180deg) rotateY(180deg);
+            writing-mode: vertical-rl;
+            /* ie X */
+            text-orientation: sideways;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progressbar"></div>
+    <div id="scrollPath"></div>
+    <div id="percent"></div>
+    <section>
+        <h1>Creative Scroll Progress Bar</h1>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium earum dolorum
+            iusto et eos, rem assumenda natus laboriosam est, reiciendis tempora eaque maiores
+            perferendis non? Magnam ipsa ipsam asperiores sed obcaecati expedita! Labore ipsa
+            dolorem aperiam eius dignissimos cupiditate enim omnis esse. Ad cumque expedita fuga
+            eum nesciunt possimus placeat aut delectus. Amet voluptate quam voluptatem
+            consectetur perferendis! Molestias natus doloremque vitae similique ad deleniti
+
+            velit nam aspernatur vel exercitationem magni nesciunt, harum incidunt alias
+            voluptatibus voluptas! Dignissimos pariatur facere dolorum repellat autem illo
+            cupiditate nemo!
+        </p>
+    </section>
+    <script>
+        let progress = document.getElementById('progressbar');
+        let percent = document.getElementById('percent');
+        let totalHeight = document.body.scrollHeight - window.innerHeight;
+
+        window.onscroll = function () {
+            let progressHeight = (window.pageYOffset / totalHeight) * 100;
+            progress.style.height = progressHeight + "%";
+            percent.innerHTML = "Page Scrolled " + Math.round(progressHeight) + "%"
+        }
+    </script>
+</body>
+
+</html>

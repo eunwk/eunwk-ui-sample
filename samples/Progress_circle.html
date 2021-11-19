@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glassmorphism | Circle Progress</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    section {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pading: 40px;
+        min-height: 100vh;
+        background: #350048;
+    }
+
+    .container {
+        width: 900px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .container .card {
+        position: relative;
+        width: 250px;
+        height: 300px;
+        text-align: center;
+        z-index: 10;
+        margin: 20px 20px 60px;
+    }
+
+    .container .card .box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(15px);
+        z-index: 10;
+        border-radius: 10px;
+    }
+
+    .percent {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        z-index: 100;
+    }
+
+    .percent .number {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .percent .number h2 {
+        color: #fff;
+        font-weight: bold;
+        font-size: 50px;
+    }
+
+    .percent .number h2 span {
+        font-size: 24px;
+    }
+
+    .text {
+        position: absolute;
+        bottom: -42px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        color: #fff;
+        text-align: center;
+        padding: 30px 20px 10px;
+        background: #f00;
+        border-radius: 10px;
+        font-weight: 800;
+        font-size: 18px;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        pointer-events: none;
+        transition: bottom 0.5s, z-index 0s, transform 0.5s, padding 0.5s;
+        transition-delay: 0.5s, 0.5s, 0s, 0.5s;
+    }
+
+    .card:hover .text {
+        transition-delay: 0s, 0.5s, 0.5s, 0s;
+        bottom: -70px;
+        z-index: 11;
+        transform: translateX(-50%) translateY(-50px);
+        padding: 10px 20px 10px;
+    }
+
+    .card:nth-child(1) .text {
+        background: #ff0461;
+    }
+
+    .card:nth-child(2) .text {
+        background: #2bd2ff;
+    }
+
+    .card:nth-child(3) .text {
+        background: #18d539;
+    }
+
+    svg {
+        position: relative;
+        width: 150px;
+        height: 150px;
+    }
+
+    svg circle {
+        width: 100%;
+        height: 100%;
+        fill: none;
+        stroke-width: 10;
+        stroke: rgba(255, 255, 255, 0.05);
+        transform: translate(5px, 5px);
+        /* transform으로만 위치 이동 가능. position이나, margin 적용안됨 */
+        stroke-linecap: round;
+    }
+
+    svg circle:nth-child(2) {
+        stroke: #fff;
+        stroke-dasharray: 440px;
+        /* 140*3.14 = 439.6*/
+        stroke-dashoffset: 10px;
+        /* 140*3.14 = 439.6*/
+    }
+
+    .card:nth-child(1) svg circle:nth-child(2) {
+        stroke-dashoffset: calc(440px - (440px * 90) / 100);
+    }
+
+    .card:nth-child(2) svg circle:nth-child(2) {
+        stroke-dashoffset: calc(440px - (440px * 82) / 100);
+    }
+
+    .card:nth-child(3) svg circle:nth-child(2) {
+        stroke-dashoffset: calc(440px - (440px * 78) / 100);
+    }
+</style>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="card">
+                <div class="box">
+                    <div>
+                        <div class="percent">
+                            <svg>
+                                <circle cx="70" cy="70" r="70"></circle>
+                                <circle cx="70" cy="70" r="70"></circle>
+                            </svg>
+                            <div class="number">
+                                <h2>90<span>%</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text">Html</div>
+            </div>
+            <div class="card">
+                <div class="box">
+                    <div>
+                        <div class="percent">
+                            <svg>
+                                <circle cx="70" cy="70" r="70"></circle>
+                                <circle cx="70" cy="70" r="70"></circle>
+                            </svg>
+                            <div class="number">
+                                <h2>82<span>%</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text">Css</div>
+            </div>
+            <div class="card">
+                <div class="box">
+                    <div>
+                        <div class="percent">
+                            <svg>
+                                <circle cx="70" cy="70" r="70"></circle>
+                                <circle cx="70" cy="70" r="70"></circle>
+                            </svg>
+                            <div class="number">
+                                <h2>78<span>%</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text">Javascript</div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

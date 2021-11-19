@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onlineTutorials | Curve Div Shape Using SVG</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .text {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            filter: url(#wavy);
+        }
+
+        .text h2 {
+            position: relative;
+            color: #ffeb3b;
+            font-weight: bold;
+            font-size: 16em;
+            text-shadow: 0 0 10px #ff8c3b,
+                0 0 40px #ff8c3b,
+                0 0 80px #ff8c3b,
+                0 0 160px #ff8c3b,
+                0 0 240px #ff8c3b;
+            -webkit-box-reflect: below -100px linear-gradient(transparent, #0008);
+        }
+
+        svg {
+            width: 0;
+            height: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text">
+        <h2>Fire</h2>
+    </div>
+    <svg>
+        <filter id="wavy">
+            <feTurbulence id="turbulence" x="0" y="0" baseFrequency="0.1 0.1" numOctaves="2" seed="3">
+                <animate attributeName="baseFrequency" dur="10s" values="0.1 0.1;0.12 0.2;" repeatCount="indefinite" />
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" scale="25" />
+        </filter>
+    </svg>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onlineTutorials | Scroll Slider</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+        }
+
+        header {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: #000;
+        }
+
+        header #bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(http://news.samsungdisplay.com/wp-content/uploads/2018/08/8.jpg) no-repeat;
+            background-size: cover;
+            border: 1px solid red;
+        }
+
+        section {
+            padding: 100px;
+            color: #fff;
+        }
+
+        section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        section p {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="bg"></div>
+    </header>
+    <section>
+        <h2>Lorem ipsum dolor, sit amet consectetur a.</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis dolores at placeat
+            repellendus veritatis commodi optio porro iure, repreheLorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Nobis dolores at placeat repellendus veritatis commodi
+            optio porro iure, reprehe</p>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis dolores at placeat
+            repellendus veritatis commodi optio porro iure, reprehe</p>
+        <br /> <br />
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis dolores at placeat
+            repellendus veritatis commodi optio porro iure, repreheLorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Nobis dolores at placeat repellendus veritatis commodi
+            optio porro iure, repreheLorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Nobis dolores at placeat repellendus veritatis commodi optio porro iure,
+            repreheLorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis dolores at
+            placeat repellendus veritatis commodi optio porro iure, repreheLorem, ipsum dolor
+            sit amet consectetur adipisicing elit. Nobis dolores at placeat repellendus
+            veritatis commodi optio porro iure, repreheLorem, ipsum dolor sit amet consectetur
+            adipisicing elit. Nobis dolores at placeat repellendus veritatis commodi optio porro
+            iure, repreheLorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis dolores
+            at placeat repellendus veritatis commodi optio porro iure, repreheLorem, ipsum dolor
+            sit amet consectetur adipisicing elit. Nobis dolores at placeat repellendus
+            veritatis commodi optio porro iure, repreheLorem, ipsum dolor sit amet consectetur
+            adipisicing elit. Nobis dolores at placeat repellendus veritatis commodi optio porro
+            iure, repreheLorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis dolores
+            at placeat repellendus veritatis commodi optio porro iure, reprehe</p>
+        <br /> <br />
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis dolores at placeat
+            repellendus veritatis commodi optio porro iure, reprehe</p>
+    </section>
+    <script>
+        // var section = document.querySelector("section");
+        // window.addEventListener("scroll", function(){
+        // 	var value= window.scrollY;
+        // 	section.style.clipPath = `circle(${ value }px at center)`
+        // })
+
+        var headerBg = document.getElementById("bg");
+        window.addEventListener("scroll", function () {
+            var value = window.scrollY;
+            headerBg.style.opacity = `${1 - window.pageYOffset / 550} `;
+            headerBg.style.top = `${window.pageYOffset} px`;
+            headerBg.style.backgroundPositionY = `${1 - window.pageYOffset / 2} px`;
+        })
+    </script>
+</body>
+
+</html>

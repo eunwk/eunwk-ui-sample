@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onlineTutorials | Slider</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .container .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .container .slide.slide1 {
+        background: url(https://www1.cbn.com/sites/default/files/styles/video_ratio_16_9/public/media/slider/images/sprite_hdv.jpg?itok=M99HMvSM);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .container .slide.slide2 {
+        background: url(https://thumbor.thedailymeal.com/QS_hR9vfY2Yn7TapKZznlQ1ahhY=//https://www.thedailymeal.com/sites/default/files/story/2020/Sprite_Ginger_-_Product_Image_-_12oz_can.jpg);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        left: 50%;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="slide slide1"></div>
+        <div class="slide slide2" id="slide"></div>
+    </div>
+    <script>
+        var slide = document.getElementById('slide');
+        window.onmousemove = function (e) {
+            var x = e.clientX;
+            slide.style.left = x + "px";
+        }
+    </script>
+</body>
+
+</html>

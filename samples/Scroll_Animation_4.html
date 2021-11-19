@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onlineTutorials | Scroll Slider</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 200vh;
+            background: #000;
+        }
+
+        section {
+            position: absolute;
+            width: 100%;
+            height: calc(100% - 500px);
+            background: #14E7F6;
+        }
+
+        .curve {
+            position: absolute;
+            bottom: -200px;
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+            transform-origin: top;
+        }
+
+        .curve i {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110%;
+            height: 500px;
+            background: #14E7F6;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <span class="curve">
+            <i></i>
+        </span>
+    </section>
+    <script>
+        var curve = document.querySelector('.curve');
+        window.addEventListener("scroll", function () {
+            var value = 1 + window.scrollY / -500;
+            console.log(value);
+            //debugger;
+            curve.style.transform = `scaleY(${value})`
+        })
+    </script>
+</body>
+
+</html>

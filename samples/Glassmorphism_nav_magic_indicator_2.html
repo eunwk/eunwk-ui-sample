@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glassmorphism | Magic Indicator 3</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #161623;
+    }
+
+    nav {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    nav a {
+        position: relative;
+        color: #fff;
+        font-size: 2em;
+        text-decoration: none;
+        padding: 10px 20px;
+    }
+
+    #marker {
+        position: absolute;
+        /* width: 100%; */
+        width: 0;
+        left: 0;
+        height: 4px;
+        background: #fff;
+        bottom: -8px;
+        z-index: 1;
+        transition: 0.5s;
+    }
+</style>
+
+<body>
+    <nav class="container">
+        <div id="marker"></div>
+        <a href="#">Home</a>
+        <a href="#">Menu1</a>
+        <a href="#">Menu2</a>
+        <a href="#">Menu3</a>
+        <a href="#">Menu4 is....</a>
+    </nav>
+</body>
+
+<script>
+    const marker = document.querySelector("#marker");
+    const item = document.querySelectorAll("nav a");
+
+    function indicator(elem) {
+        marker.style.left = elem.offsetLeft + 'px';
+        marker.style.width = elem.offsetWidth + 'px';
+    }
+
+    item.forEach(link => {
+        link.addEventListener("click", function (e) {
+            indicator(e.target);
+        })
+    })
+</script>
+
+</html>

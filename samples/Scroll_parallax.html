@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jarallax</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jarallax/1.12.7/jarallax.css"
+        integrity="sha512-BTgVhP+g4WxjF6upTASMi1HyyCR7LZwn4ejaRpB6h1+UvZ0M9ISnv5nLjbOz9jzk5A1l70gsW+1IrmNutMrQoA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: #111;
+        color: #fff;
+        padding-bottom: 300px;
+        overflow-x: hidden;
+    }
+
+    body::before {
+        content: 'Parallax';
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 16em;
+        font-weight: 700;
+        color: transparent;
+        -webkit-text-stroke: 1px #555;
+    }
+
+    section {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh
+    }
+
+    section h2 {
+        margin-left: 200px;
+        font-size: 4em;
+        color: #fff;
+        margin-bottom: 20px;
+    }
+
+    section .container {
+        position: relative;
+        width: 1000px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    section:nth-child(even) .container {
+        flex-direction: row-reverse;
+    }
+
+    section .container .imgBx {
+        position: relative;
+        width: 800px;
+        height: 400px;
+        overflow: hidden;
+        box-shadow: 0 25px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    section .container .imgBx img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    section .container .content {
+        position: absolute;
+        right: 0;
+        margin-top: 200px;
+        margin-bottom: 40px;
+        padding: 40px;
+        background: #333;
+        z-index: 1;
+        max-width: 400px;
+        color: #fff;
+        box-shadow: 0 25px 35px rgba(0, 0, 0, 0.1);
+        border-bottom: 6px solid #4ac7ff;
+    }
+
+    section:nth-child(even) .container .content {
+        left: 0;
+    }
+</style>
+
+<body>
+    <section>
+        <div class="box">
+            <!-- data-jarallax-element="y x" -->
+            <h2 data-jarallax-element="0 -200">Awesome Parallax Scrolling</h2>
+            <div class="container">
+                <div class="imgBx jarallax">
+                    <img src="https://www.sjpost.co.kr/news/photo/202007/53199_48342_4214.jpg" class="jarallax-img" />
+                </div>
+                <div class="content" data-jarallax-element="-200 0">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus
+                        temporibus illo ipsum et maiores quis hic quas. Tempore ab corrupti vel,
+                        nemo rem fugiat ex, atque expedita quaerat impedit reprehenderit
+                        asperiores vero ipsam recusandae neque hic! Dolorum cupiditate nostrum,
+                        ipsam earum quisquam nihil distinctio doloremque aspernatur cum laborum
+                        eum explicabo hic animi excepturi deleniti a est veniam sapiente inv</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="box">
+            <!-- data-jarallax-element="y x" -->
+            <h2 data-jarallax-element="0 200">Awesome Parallax Scrolling</h2>
+            <div class="container">
+                <div class="imgBx jarallax">
+                    <img src="https://www.sjpost.co.kr/news/photo/202007/53199_48342_4214.jpg" class="jarallax-img" />
+                </div>
+                <div class="content" data-jarallax-element="-200 0">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus
+                        temporibus illo ipsum et maiores quis hic quas. Tempore ab corrupti vel,
+                        nemo rem fugiat ex, atque expedita quaerat impedit reprehenderit
+                        asperiores vero ipsam recusandae neque hic! Dolorum cupiditate nostrum,
+                        ipsam earum quisquam nihil distinctio doloremque aspernatur cum laborum
+                        eum explicabo hic animi excepturi deleniti a est veniam sapiente inv</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="box">
+            <!-- data-jarallax-element="y x" -->
+            <h2 data-jarallax-element="0 -200">Awesome Parallax Scrolling</h2>
+            <div class="container">
+                <div class="imgBx jarallax">
+                    <img src="https://www.sjpost.co.kr/news/photo/202007/53199_48342_4214.jpg" class="jarallax-img" />
+                </div>
+                <div class="content" data-jarallax-element="-200 0">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus
+                        temporibus illo ipsum et maiores quis hic quas. Tempore ab corrupti vel,
+                        nemo rem fugiat ex, atque expedita quaerat impedit reprehenderit
+                        asperiores vero ipsam recusandae neque hic! Dolorum cupiditate nostrum,
+                        ipsam earum quisquam nihil distinctio doloremque aspernatur cum laborum
+                        eum explicabo hic animi excepturi deleniti a est veniam sapiente inv</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="box">
+            <!-- data-jarallax-element="y x" -->
+            <h2 data-jarallax-element="0 200">Awesome Parallax Scrolling</h2>
+            <div class="container">
+                <div class="imgBx jarallax">
+                    <img src="https://www.sjpost.co.kr/news/photo/202007/53199_48342_4214.jpg" class="jarallax-img" />
+                </div>
+                <div class="content" data-jarallax-element="-200 0">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus
+                        temporibus illo ipsum et maiores quis hic quas. Tempore ab corrupti vel,
+                        nemo rem fugiat ex, atque expedita quaerat impedit reprehenderit
+                        asperiores vero ipsam recusandae neque hic! Dolorum cupiditate nostrum,
+                        ipsam earum quisquam nihil distinctio doloremque aspernatur cum laborum
+                        eum explicabo hic animi excepturi deleniti a est veniam sapiente inv</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jarallax/1.12.7/jarallax.min.js"
+        integrity="sha512-JpiSiPEgPmeTAnXyH375a9UxAsjoiyO+lpsayQd7Pcl2+tYf4y1beIF25yDMvmAV7dbZUPqh084iT3D6IQOoHg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jarallax/1.12.7/jarallax-element.min.js"
+        integrity="sha512-DJOrYwBG/ZOAj0XyJ+ksZLazmTR4pU6ZywpVWuLWiwYfQ4Ry3kyxm+/VRd3Itxcmv/qAYJMdbebG8gad3MCByg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        jarallax(document.querySelectorAll('.jarallax'), {
+            speed: 0.5
+        });
+    </script>
+</body>
+
+</html>

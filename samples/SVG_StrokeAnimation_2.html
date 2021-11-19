@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onlineTutorials | Curve Div Shape Using SVG</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container1 svg {
+            width: 540px;
+            height: 540px;
+            /* position: re; left: 50%; top: 50%; transform: translate(-50%, -50%); */
+        }
+
+        .container1 svg .draw1 {
+            stroke: red;
+            stroke-width: 10px;
+            /* fill: orange; */
+            /* animation: animate 5s linear infinite; */
+            animation: animate1 10s forwards;
+            stroke-dasharray: 2450;
+            stroke-dashoffset: 2450;
+        }
+
+        .container1 svg .draw2 {
+            stroke: red;
+            stroke-width: 10px;
+            /* fill: orange; */
+            /* animation: animate 5s linear infinite; */
+            animation: animate2 5s forwards;
+            stroke-dasharray: 3950;
+            stroke-dashoffset: 3950;
+        }
+
+        @keyframes animate1 {
+            50% {
+                stroke-dashoffset: 0;
+            }
+
+            100% {
+                stroke-dashoffset: -4900;
+            }
+        }
+
+        @keyframes animate2 {
+            to {
+                stroke-dashoffset: 0;
+                stroke: lightseagreen;
+            }
+        }
+
+        .container2 {
+            width: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #000;
+            padding: 50px;
+        }
+
+        .container2 .icon {
+            width: 200px;
+        }
+
+        .container2 .icon path {
+            fill: transparent;
+            stroke: #31e8ff;
+            stroke-width: 10;
+            stroke-linecap: round;
+        }
+
+        .container2 .icon.star:hover path {
+            stroke-dasharray: 1770;
+            stroke-dashoffset: 1770;
+            animation: animate-star 2s linear forwards;
+        }
+
+        @keyframes animate-star {
+            0% {
+                stroke-dashoffset: 0;
+            }
+
+            40% {
+                stroke-dashoffset: 1770;
+            }
+
+            80% {
+                stroke-dashoffset: 3540;
+                /*1770*2*/
+                fill: transparent;
+            }
+
+            100% {
+                stroke-dashoffset: 3540;
+                fill: #31e8ff;
+            }
+        }
+
+        .container2 .icon.heart:hover path {
+            stroke-dasharray: 1590;
+            stroke-dashoffset: 1590;
+            animation: animate-heart 2s linear forwards;
+        }
+
+        @keyframes animate-heart {
+            0% {
+                stroke-dashoffset: 0;
+            }
+
+            40% {
+                stroke-dashoffset: 1590;
+            }
+
+            80% {
+                stroke-dashoffset: 3180;
+                /*1590*2*/
+                fill: transparent;
+            }
+
+            100% {
+                stroke-dashoffset: 3180;
+                fill: #31e8ff;
+            }
+        }
+
+        .container2 .icon.moon:hover path {
+            stroke-dasharray: 1070;
+            stroke-dashoffset: 1070;
+            animation: animate-moon 2s linear forwards;
+        }
+
+        @keyframes animate-moon {
+            0% {
+                stroke-dashoffset: 0;
+            }
+
+            40% {
+                stroke-dashoffset: 1070;
+            }
+
+            80% {
+                stroke-dashoffset: 2140;
+                /*1070*2*/
+                fill: transparent;
+            }
+
+            100% {
+                stroke-dashoffset: 2140;
+                fill: #31e8ff;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container1">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+            focusable="false" width="800" height="800" viewBox="0 0 1024 1024" class="iconify">
+            <path class="draw1"
+                d="M811.4 418.7C765.6 297.9 648.9 212 512.2 212S258.8 297.8 213 418.6C127.3 441.1 64 519.1 64 612c0 110.5 89.5 200 199.9 200h496.2C870.5 812 960 722.5 960 612c0-92.7-63.1-170.7-148.6-193.3zm36.3 281a123.07 123.07 0 0 1-87.6 36.3H263.9c-33.1 0-64.2-12.9-87.6-36.3A123.3 123.3 0 0 1 140 612c0-28 9.1-54.3 26.2-76.3a125.7 125.7 0 0 1 66.1-43.7l37.9-9.9l13.9-36.6c8.6-22.8 20.6-44.1 35.7-63.4a245.6 245.6 0 0 1 52.4-49.9c41.1-28.9 89.5-44.2 140-44.2s98.9 15.3 140 44.2c19.9 14 37.5 30.8 52.4 49.9c15.1 19.3 27.1 40.7 35.7 63.4l13.8 36.5l37.8 10c54.3 14.5 92.1 63.8 92.1 120c0 33.1-12.9 64.3-36.3 87.7z"
+                fill="none" stroke="#707070" stroke-width="5"></path>
+        </svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="749.497" height="491.415" viewBox="0 0 749.497 491.415">
+            <path class="draw2"
+                d="M293.939,796.97V400H439.394V796.97H627.273V400H769.7V796.97H936.364l12.121-484.848H206.061L200,803.03"
+                transform="translate(-199.5 -311.621)" fill="none" stroke="#707070" stroke-width="1" />
+        </svg>
+    </div>
+    <div class="container2">
+        <div class="icon star"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-5 0 522.002 512.002">
+                <path
+                    d="M511.267,197.258c-1.764-5.431-6.457-9.389-12.107-10.209l-158.723-23.065L269.452,20.157 c-2.526-5.12-7.741-8.361-13.45-8.361c-5.71,0-10.924,3.241-13.451,8.361l-70.988,143.827l-158.72,23.065 c-5.649,0.82-10.344,4.778-12.108,10.208c-1.765,5.431-0.293,11.392,3.796,15.377l114.848,111.954L92.271,482.671 c-0.966,5.628,1.348,11.314,5.967,14.671c2.613,1.898,5.708,2.864,8.818,2.864c2.388,0,4.784-0.569,6.978-1.723l141.967-74.638 l141.961,74.637c5.055,2.657,11.178,2.215,15.797-1.141c4.619-3.356,6.934-9.044,5.969-14.672l-27.117-158.081l114.861-111.955 C511.56,208.649,513.033,202.688,511.267,197.258z" />
+            </svg>
+        </div>
+        <div class="icon heart">
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="-5 0 522 512">
+                <path
+                    d="M376,30c-27.783,0-53.255,8.804-75.707,26.168c-21.525,16.647-35.856,37.85-44.293,53.268 c-8.437-15.419-22.768-36.621-44.293-53.268C189.255,38.804,163.783,30,136,30C58.468,30,0,93.417,0,177.514 c0,90.854,72.943,153.015,183.369,247.118c18.752,15.981,40.007,34.095,62.099,53.414C248.38,480.596,252.12,482,256,482 s7.62-1.404,10.532-3.953c22.094-19.322,43.348-37.435,62.111-53.425C439.057,330.529,512,268.368,512,177.514 C512,93.417,453.532,30,376,30z" />
+            </svg>
+        </div>
+        <div class="icon moon">
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="-5 -5 322.812 322.812">
+                <path
+                    d="M305.2,178.159c-3.2-0.8-6.4,0-9.2,2c-10.4,8.8-22.4,16-35.6,20.8c-12.4,4.8-26,7.2-40.4,7.2c-32.4,0-62-13.2-83.2-34.4 c-21.2-21.2-34.4-50.8-34.4-83.2c0-13.6,2.4-26.8,6.4-38.8c4.4-12.8,10.8-24.4,19.2-34.4c3.6-4.4,2.8-10.8-1.6-14.4 c-2.8-2-6-2.8-9.2-2c-34,9.2-63.6,29.6-84.8,56.8c-20.4,26.8-32.4,60-32.4,96c0,43.6,17.6,83.2,46.4,112s68,46.4,112,46.4 c36.8,0,70.8-12.8,98-34c27.6-21.6,47.6-52.4,56-87.6C314,184.959,310.8,179.359,305.2,178.159z" />
+            </svg>
+        </div>
+    </div>
+</body>
+
+</html>

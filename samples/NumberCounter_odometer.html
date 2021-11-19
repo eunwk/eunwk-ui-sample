@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onlineTutorials | Odometer Number Counter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.5/themes/odometer-theme-car.css"
+        integrity="sha512-SOZhK3snfa4P/YdkDXtw7CmnIeuFmZho47wtGmDit2BxEhEMw1+SkOe1L4WenNmU1vszFLCJZanDzDJRZnwzIQ=="
+        crossorigin="anonymous" />
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .odometer {
+        font-size: 4em;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="imgBx"></div>
+        <div class="odometer" id="odometer">000000</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.5/odometer.min.js"
+        integrity="sha512-W/5PVFcV7i2BF+W7oc1dkJk2J7HGEXCYyvPoVVUyM4QT9wJHqRQ60vG5TieVJlaxpqFPPwfGU7aXW+sKk4ufaA=="
+        crossorigin="anonymous"></script>
+    <script>
+        setTimeout(function () {
+            odometer.innerHTML = 175999;
+        })
+    </script>
+</body>
+
+</html>
