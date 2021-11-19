@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glassmorphism | Mousemove Parallax Effects</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow: hidden;
+    }
+
+    section {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .imgBx {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url(https://images.mansionglobal.com/im-182271?width=1260&size=1.521997621878716);
+        background-size: 110%;
+        background-position: calc(var(--x)/-20) calc(var(--y)/-20)
+    }
+
+    .box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(14px);
+    }
+
+    .box.box2 {
+        background: url(https://images.mansionglobal.com/im-182271?width=1260&size=1.521997621878716);
+        clip-path: circle(250px at center);
+        background-size: 110%;
+        background-position: calc(var(--x)/-20) calc(var(--y)/-20)
+    }
+
+    .box.box2::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 500px;
+        /*background: #fff;*/
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+        z-index: 10;
+        border-radius: 50%;
+    }
+
+    .text {
+        position: absolute;
+        color: #fff;
+        font-size: 15em;
+        margin-top: 15%;
+        margin-left: 15%;
+        transform: translateX(calc(var(--x)/-5)) translateY(calc(var(--y)/-5));
+    }
+</style>
+
+<body>
+    <section>
+        <div class="imgBx">
+            <h2 class="text">Parallax</h2>
+        </div>
+        <div class="box box1"></div>
+        <div class="box box2">
+            <h2 class="text">Parallax</h2>
+        </div>
+    </section>
+</body>
+
+<script>
+    const pos = document.documentElement;
+    pos.addEventListener("mousemove", function (e) {
+        pos.style.setProperty('--x', e.clientX + "px");
+        pos.style.setProperty('--y', e.clientY + "px");
+    });
+</script>
+
+</html>

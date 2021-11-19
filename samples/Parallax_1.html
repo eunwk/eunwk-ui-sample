@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onlineTutorials | MouseMove Parallax</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        background: linear-gradient(45deg, #8500ff, #5acaff);
+    }
+
+    #container {
+        position: absolute;
+        /* top: 10%; left: 10%; right: 10%; bottom: 10%; */
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url(https://media.istockphoto.com/vectors/japanese-traditional-pattern-old-cloud-painting-pattern-vector-id1219514601) #151729;
+        filter: invert(1);
+        box-shadow: 0 15px 30px rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+    }
+
+    #container .content {
+        max-width: 600px;
+        text-align: center;
+        filter: invert(1);
+    }
+
+    #container .content h2 {
+        font-size: 18vw;
+        color: #fff;
+        line-height: 1em;
+    }
+
+    #container .content p,
+    #container .content h3 {
+        font-size: 1.2em;
+        color: #fff;
+    }
+</style>
+
+<body>
+    <div id="container">
+        <div class="content">
+            <h2>404</h2>
+            <h3>Opps. page not found</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium quas at
+                fugiat iste! Mollitia non eveniet, inventore aut optio quibusdam, repellendus
+                aliquam sit at excepturi illo ab quas earum velit!</p>
+        </div>
+    </div>
+
+    <script>
+        var container = document.getElementById("container");
+        window.addEventListener("mousemove", function (e) {
+            var x = - e.clientX / 5;
+            var y = - e.clientY / 5;
+            container.style.backgroundPositionX = x + "px";
+            container.style.backgroundPositionY = y + "px";
+        })
+    </script>
+</body>
+
+</html>
