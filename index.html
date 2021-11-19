@@ -1,28 +1,136 @@
 <!doctype html>
 <html lang="ko">
-
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, target-densitydpi=medium-dpi ">
 	<meta name="author" content="">
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<title>파일목록</title>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&amp;family=Noto+Sans+KR:wght@300;400;500;600&amp;display=swap"
-		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&amp;family=Noto+Sans+KR:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 	<link rel="apple-touch-icon" href="appletouch.png">
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
-		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="common.css" />
 </head>
 
+<script>
+	const data = [
+		{
+			type: 'App',
+			fileName: '크롬앱만들기 Todo List',
+			summary: `
+				1. 현재시간 표시<br />
+				2. 이름을 입력하면, 인사말을 출력하고, 이름을 localStorage 에 저장<br />
+				3. toDoList 작성/삭제, localStorage 에 저장.<br />
+				4. 위치정보 가져오기, 날씨 API 사용
+			`,
+			tag: ["Date", "localStorage", "location"],
+			linkBlank: 'samples/js_chrome_app_lacalStorage.html',
+		},
+		{
+			type: 'App',
+			fileName: '아날로그 시계',
+			summary: `
+			1. 시, 분, 초 침이 돌아 가는 아날로그 시계<br />
+			2. @keyframes 애니메이션과 bg 사선 그라디언트 적용됨
+			`,
+			tag: ["@keyframes", "gradient"],
+			linkBlank: 'samples/js_clock_1.html',
+		},
+		{
+			type: 'App',
+			fileName: '그림판만들기',
+			summary: "그림판 Canvas, Touch 이벤트에도 작동",
+			tag: ["Canvas"],
+			linkBlank: 'samples/js_paintBoard.html',
+		},
+		{
+			type: 'Button',
+			fileName: '버튼 애니메이션',
+			summary: "클릭하면 버튼 내부에 원이 퍼져나가는 애니메이션",
+			tag: ["javascript", "css"],
+			linkBlank: 'samples/svg_ButtonAnimation_1.html',
+		},
+		{
+			type: 'Button',
+			fileName: '버튼 애니메이션',
+			summary: "svg를 이용한 버튼 애니메이션",
+			tag: ["svg"],
+			linkBlank: 'samples/svg_ButtonAnimation_2.html',
+		},
+		{
+			type: 'Modal',
+			fileName: '모달 1',
+			summary: "toggle Class를 이용한 모달 show/hide",
+			tag: ["javascript"],
+			linkBlank: 'samples/modal_1.html',
+		},
+		{
+			type: 'Ainmation',
+			fileName: 'createElement',
+			summary: "mousemove 시 createElement를 이용하여 위로 올라가는 엘리먼트 생성",
+			tag: ["mousemove event", "createElement"],
+			linkBlank: 'samples/MouseMove_createElements.html',
+		},
+		{
+			type: 'Ainmation',
+			fileName: 'Follow eyes',
+			summary: "마우스 커서를 쫒아다니는 눈",
+			tag: ["Math.atan2", "transform rotate"],
+			linkBlank: 'samples/MouseMove_FollowEyes.html',
+		},
+		{
+			type: 'Ainmation',
+			fileName: 'ClipPath_1',
+			summary: "ClipPath 작은 원 영역으로 뒷배경(고양이) 그림 보기, <br />마우스 클릭 시 영역 확대",
+			tag: ["css clip-path", "css 변수", "--i, var(--i)"],
+			linkBlank: 'samples/ClipPath_1.html',
+		},
+		{
+			type: 'Ainmation',
+			fileName: 'ClipPath 애니메이션',
+			summary: "마우스 오버시 ClipPath 로 사각형 레이아웃 전환.<br/>사진에 마우스 오버시 Path 영역 애니메이션 되며 설명글로 전환",
+			tag: ["clip-path"],
+			linkBlank: 'samples/ClipPath_hoverEffect.html',
+		},
+		{
+			type: 'Parallax',
+			fileName: 'Parallax 1',
+			summary: "background image Parallax",
+			tag: ["mousemove", "clientX, clientY"],
+			linkBlank: 'samples/Parallax_1.html',
+		},
+		{
+			type: 'Parallax',
+			fileName: 'Parallax 2',
+			summary: "css 변수를 이용한 background image, text Parallax",
+			tag: ["css 변수", "--i, var(--i)"],
+			linkBlank: 'samples/Parallax_2.html',
+		},
+		{
+			type: 'Calendar',
+			fileName: '캘린더',
+			summary: "only html, css로 구현된 캘린더. 기능 X",
+			tag: ["css"],
+			linkBlank: 'samples/CalendarUI_With_Grid.html',
+		},
+		{
+			type: 'Chart',
+			fileName: '막대그래프',
+			summary: "only html, css",
+			tag: ["css"],
+			linkBlank: 'samples/Chart_virtialGraph.html',
+		},
+		
+	]
+</script>
+
+
 <body>
 	<div id="wrapper">
-
 		<div id="header">
 			<h1 class="project_title"><img src="logo.png" alt="UI/UI" />은자양's 샘플 UI</h1>
-
 			<ul class="tab_btns">
 				<li><a href="#list01" class="active">00. 템플릿</a></li>
 				<li><a href="#list02">탭2</a></li>
@@ -43,9 +151,8 @@
 
 				<!-- 탭1 시작 -->
 				<div class="tab_box on" id="list01">
-
 					<h2 class="section_title">1. Date, localStorage, location</h2>
-					<table>
+					<table class="tbl-responsive">
 						<colgroup>
 							<col style="width:15%">
 							<col style="width:20%">
@@ -62,141 +169,31 @@
 								<th scope="col">링크</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">App</th>
-								<td class="al">크롬앱만들기 Todo List</td>
-								<td class="al">
-									1. 현재시간 표시<br>
-									2. 이름을 입력하면, 인사말을 출력하고, 이름을 localStorage 에 저장<br>
-									3. toDoList 작성/삭제, localStorage 에 저장.<br>
-									4. 위치정보 가져오기, 날씨 API 사용
-									</td>
-								<td class="al">
-									<span class="tag">Date</span>
-									<span class="tag">localStorage</span>
-									<span class="tag">location</span>
-								</td>
-								<td><a href="samples/js_chrome_app_lacalStorage.html" class="link" target="_blank">새창</a></td>
-							</tr>
-						
-							<tr>
-								<th scope="row">App</th>
-								<td class="al">아날로그 시계</td>
-								<td class="al">
-									1. 시, 분, 초 침이 돌아 가는 아날로그 시계<br />
-									2. @keyframes 애니메이션과 bg 사선 그라디언트 적용됨
-								</td>
-								<td class="al">
-									<span class="tag">@keyframes</span>
-									<span class="tag">linear-gradient</span>
-								</td>
-								<td><a href="/samples/js_clock_1.html" class="link" target="_blank">새창</a></td>
-							</tr>
-
+						<tbody id="tbody">
+							<script>
+								const tbody = document.querySelector("#tbody");
+								data.forEach((item)=>{			
+									const tr = document.createElement("tr");
+									const tdContent = `
+										<th scope="row">${item.type}</th>
+										<td class="al">${item.fileName}</td>
+										<td class="al">${item.summary}</td>
+										<td class="al">${				
+											item.tag.map((tag)=>{
+												return `<span class="tag">${tag}</span>`	
+											}).join('')
+										}</td>
+										<td><a href="${item.linkBlank}" target="_blank">새창</a></td>
+									`;
+									tr.innerHTML = tdContent;
+									tbody.appendChild(tr);
+								})
+								
+							</script>
 						</tbody>
 					</table>
-
-					<h2 class="section_title">2. Canvas, SVG, CSS Ainmation</h2>
-					<table>
-						<colgroup>
-							<col style="width:15%">
-							<col style="width:20%">
-							<col>
-							<col style="width:20%">
-							<col style="width:10%">
-						</colgroup>
-						<thead>
-							<tr>
-								<th scope="col">구분</th>
-								<th scope="col">파일명</th>
-								<th scope="col">요약</th>
-								<th scope="col">태그</th>
-								<th scope="col">링크</th>
-							</tr>
-						</thead>
-						<tbody>
-							
-							<tr>
-								<th scope="row">App</th>
-								<td class="al">그림판만들기</td>
-								<td class="al">그림판 Canvas, Touch 이벤트에도 작동</td>
-								<td class="al">
-									<span class="tag">Canvas</span>
-								</td>
-								<td><a href="samples/js_paintBoard.html" class="link" target="_blank">새창</a></td>
-							</tr>
-							<tr>
-								<th scope="row">Button</th>
-								<td class="al">버튼 애니메이션</td>
-								<td class="al">클릭하면 버튼 내부에 원이 퍼져나가는 애니메이션</td>
-								<td class="al">
-									<span class="tag">javascript</span>
-									<span class="tag">css</span>
-								</td>
-								<td><a href="samples/svg_ButtonAnimation_1.html" class="link" target="_blank">새창</a></td>
-							</tr>
-							<tr>
-								<th scope="row">Button</th>
-								<td class="al">버튼 애니메이션</td>
-								<td class="al">svg를 이용한 버튼 애니메이션</td>
-								<td class="al">
-									<span class="tag">svg</span>
-								</td>
-								<td><a href="samples/svg_ButtonAnimation_2.html" class="link" target="_blank">새창</a></td>
-							</tr>							
-							<tr>
-								<th scope="row">Modal</th>
-								<td class="al">모달 1</td>
-								<td class="al">toggle Class를 이용한 모달 show/hide</td>
-								<td class="al">
-									<span class="tag">javascript</span>
-								</td>
-								<td><a href="samples/modal_1.html" class="link" target="_blank">새창</a></td>
-							</tr>							
-									
-							<tr>
-								<th scope="row">Ainmation</th>
-								<td class="al">createElement</td>
-								<td class="al">mousemove 시 createElement를 이용하여 위로 올라가는 엘리먼트 생성</td>
-								<td class="al">
-									<span class="tag">mousemove event</span>
-									<span class="tag">createElement</span>
-								</td>
-								<td><a href="samples/MouseMove_createElements.html" class="link" target="_blank">새창</a></td>
-							</tr>							
-							<tr>
-								<th scope="row">Ainmation</th>
-								<td class="al">Follow eyes</td>
-								<td class="al">마우스 커서를 쫒아다니는 눈</td>
-								<td class="al">
-									<span class="tag">Math.atan2</span>
-									<span class="tag">transform rotate</span>
-								</td>
-								<td><a href="samples/MouseMove_FollowEyes.html" class="link" target="_blank">새창</a></td>
-							</tr>							
-							<tr>
-								<th scope="row">Parallax</th>
-								<td class="al">Parallax 1</td>
-								<td class="al">background image Parallax</td>
-								<td class="al">
-									<span class="tag">mousemove</span>
-									<span class="tag">clientX, clientY</span>
-								</td>
-								<td><a href="samples/Parallax_1.html" class="link" target="_blank">새창</a></td>
-							</tr>							
-							<tr>
-								<th scope="row">Parallax</th>
-								<td class="al">Parallax 2</td>
-								<td class="al">css 변수를 이용한 background image, text Parallax</td>
-								<td class="al">
-									<span class="tag">css 변수</span>
-									<span class="tag">--i, var(--i)</span>
-								</td>
-								<td><a href="samples/Parallax_2.html" class="link" target="_blank">새창</a></td>
-							</tr>									
-						</tbody>
-					</table>
+				
+					
 
 				</div>
 				<!--.tab_box-->
@@ -204,7 +201,6 @@
 
 				<!-- 탭2 시작 -->
 				<div class="tab_box" id="list02">
-
 					<h2 class="section_title">탭2</h2>
 					<table>
 						<colgroup>

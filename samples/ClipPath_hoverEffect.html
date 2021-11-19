@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onlineTutorials | Slider</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .box {
+        position: relative;
+        width: 400px;
+        height: 400px;
+        background: #000;
+    }
+
+    .content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .content h2 {
+        margin-bottom: 20px;
+    }
+
+    .content a {
+        display: block;
+        margin-top: 20px;
+        padding: 10px 30px;
+        border: 1px solid #fff;
+        text-decoration: none;
+        color: #fff;
+        transition: 0.5s;
+    }
+
+    .content a:hover {
+        color: #000;
+        background: #fff;
+    }
+
+    .box img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* https://bennettfeely.com/clippy/ */
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        transition: .5s;
+    }
+
+    .box:hover img {
+        clip-path: polygon(0 0, 100% 0, 0 0, 0% 100%);
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div class="content">
+            <h2>Image Hover Effect</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel, consequatur
+                quisquam. Libero, nostrum beatae et dicta nihil natus dolore dolores
+                reprehenderit quisquam, maiores explicabo architecto! Neque corporis delectus
+                atque distinctio.</p>
+            <a href="#">ReadMore</a>
+        </div>
+        <img
+            src="https://blog.kakaocdn.net/dn/lUDJg/btqLZKxK1ya/xTzpeX1aYcZKaf7nkaBF9k/2020%E1%84%82%E1%85%A7%E1%86%AB-10%E1%84%8B%E1%85%AF%E1%86%AF-12-%E1%84%80%E1%85%A9%E1%84%8B%E1%85%A3%E1%86%BC%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A5%E1%84%89%E1%85%B3A.png?attach=1&knm=img.png" />
+    </div>
+</body>
+
+</html>

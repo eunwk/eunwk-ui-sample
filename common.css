@@ -104,7 +104,6 @@ td {
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     padding: 3px 5px;
-    height: 24px;
     box-sizing: border-box;
     text-align: center;
 }
@@ -189,4 +188,37 @@ tbody th {
     padding: 3px 10px;
     background: #eee;
     border-radius: 3px;
+    margin: 2px 0;
+    margin-right: 3px;
+}
+
+@media all and (max-width: 1023px) {
+    #container{
+        padding: 30px 15px;
+    }
+    .tbl-responsive,
+    .tbl-responsive thead, 
+    .tbl-responsive tbody, 
+    .tbl-responsive tr, 
+    .tbl-responsive th, 
+    .tbl-responsive td {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+
+    .tbl-responsive thead {display: none;}
+
+    .tbl-responsive tr {
+        border-bottom: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    .tbl-responsive tbody th, 
+    .tbl-responsive tbody td {
+        border-bottom: 0;
+        border-right: 0;
+    }
 }

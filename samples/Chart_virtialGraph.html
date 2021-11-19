@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onlineTutorials | Create Page Scroll Progress Bar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        section {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(0deg, #003f9e, #000105);
+        }
+
+        .box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 550px;
+            height: 300px;
+            background: transparent;
+            border-bottom: 1px solid #000;
+            border-left: 1px solid #000;
+            display: flex;
+        }
+
+        .box .skill {
+            position: relative;
+            flex: 1;
+            text-align: center;
+        }
+
+        .box .skill .graph {
+            position: absolute;
+            width: 40px;
+            background: rgba(0, 0, 0, 1);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .box .skill .graph::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 0;
+            background: linear-gradient(0deg, #003ba5, #009ffe)
+        }
+
+        .box .skill .graph::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1)
+        }
+
+        .box .skill .graph .percent {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .box .skill .name {
+            position: absolute;
+            bottom: -30px;
+            color: #fff;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="box">
+            <div class="skill">
+                <div class="graph" style="height: 50%">
+                    <div class="percent">50%</div>
+                </div>
+                <div class="name">html</div>
+            </div>
+
+            <div class="skill">
+                <div class="graph" style="height: 72%">
+                    <div class="percent">72%</div>
+                </div>
+                <div class="name">css</div>
+            </div>
+
+            <div class="skill">
+                <div class="graph" style="height: 97%">
+                    <div class="percent">97%</div>
+                </div>
+                <div class="name">Javascript</div>
+            </div>
+
+            <div class="skill">
+                <div class="graph" style="height: 90%">
+                    <div class="percent">90%</div>
+                </div>
+                <div class="name">photoshop</div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
