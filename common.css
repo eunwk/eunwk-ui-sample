@@ -92,12 +92,17 @@ table + .section_title {
 
 .sort {
     margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
 }
-.sort input {
-    margin-right: 10px;
-}
+
 .sort label {
     margin-right: 20px;
+    width: 130px;
+    flex: 0 0 auto;
+}
+.sort input {
+    margin-right: 8px;
 }
 
 /* table */
