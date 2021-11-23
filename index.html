@@ -467,12 +467,9 @@
 			summary: "아이콘의 라인을 따라 애니메이션",
 			tag: ["svg", "stroke-dasharray", "stroke-dashoffset"],
 			linkBlank: 'samples/SVG_StrokeAnimation_2.html',
-		},
-		
-		
-			
-		
-	]
+		},	
+	];
+	
 </script>
 
 
@@ -501,6 +498,7 @@
 				<!-- 탭1 시작 -->
 				<div class="tab_box on" id="list01">
 					<h2 class="section_title">1. UI 리스트</h2>
+					<div class="sort" id="sortCategory">구분</div>
 					<table class="tbl-responsive">
 						<colgroup>
 							<col style="width:15%">
@@ -519,9 +517,10 @@
 							</tr>
 						</thead>
 						<tbody id="tbody">
-							<script>
+							<!--  목록 동적 생성 -->
+							<!-- <script>
 								const tbody = document.querySelector("#tbody");
-								data.forEach((item)=>{			
+								sortedData.forEach((item)=>{			
 									const tr = document.createElement("tr");
 									const tdContent = `
 										<th scope="row">${item.type}</th>
@@ -538,7 +537,7 @@
 									tbody.appendChild(tr);
 								})
 								
-							</script>
+							</script> -->
 						</tbody>
 					</table>
 				
@@ -645,7 +644,132 @@
 
 
 			<script src="common.js"></script>
+			<script>
+			/******************************** 
+			 **** category 목록 생성 
+			 ********************************/
+			const category = new Set();
 
+			// 카테고리 전체카테고리 세팅
+			const resetCategory = () => {
+				for (let i =0; i < data.length; i++) {
+					category.add(data[i].type);
+				}	
+				// debugger;
+			}
+			// 카테고리 비우기
+			const clearCategory = () => {
+				category.clear();
+			}
+
+			
+		
+			/******************************** 
+			 **** category 체크박스 생성
+			********************************/
+			const sortCategory = document.querySelector(".sort");
+			//sortCategory.style.background = "red"
+			const makeCategory = () => {
+			 // 카테고리 체크박스 생성
+				let obj = `<input type="checkbox" name="sort-category" id="all" checked value="all"/><label for="all">All</label>`;
+				Array.from(category).map((tag)=>{	
+					obj += `<input type="checkbox" name="sort-category" id="${tag}" checked value="${tag}"/><label for="${tag}">${tag}</label>`	
+				})
+				sortCategory.innerHTML = obj
+			}
+			
+			/******************************** 
+			 **** tbody에 데이터 출력
+			********************************/
+			const tbody = document.querySelector("#tbody");
+			const createTrData = () => {		
+				// 출력될 Data 가져옴.
+				
+				const sortedData = data.filter((value) => {
+					return category.has(value.type);
+				})
+
+				let obj ="";	
+					sortedData.map((item)=>{		
+					obj += `
+						<tr>
+							<th scope="row">${item.type}</th>
+							<td class="al">${item.fileName}</td>
+							<td class="al">${item.summary}</td>
+							<td class="al">${				
+								item.tag.map((tag)=>{
+									return `<span class="tag">${tag}</span>`	
+								}).join('')
+							}</td>
+							<td><a href="${item.linkBlank}" target="_blank">새창</a></td>
+						</tr>
+					`;
+				})
+				// console.log("obj", obj)	
+				tbody.innerHTML = obj;
+			}
+
+			/******************************** 
+			 **** checkbox 선택 시 tbody, checkbox 그룹 업데이트
+			********************************/
+			const setSiblingCheckboxChecked = (target, state) => {
+				
+				console.log( target, state)
+				target.parentElement.querySelectorAll("input[type=checkbox]").forEach((chk) => {
+					chk.checked = state;
+				})
+			}
+			const setSortCategory = (e) => {	
+				console.log("click");	
+				if(e.target.value === "all") {		
+					if(e.target.checked) {
+						resetCategory();
+						createTrData();
+						setSiblingCheckboxChecked(e.target, true);
+					} else {
+						clearCategory();
+						createTrData();
+						setSiblingCheckboxChecked(e.target, false);
+					}
+				//	debugger;
+				}
+
+				if(e.target.checked) {
+					// console.log(e.target.value + "선택");
+					category.add(e.target.value)
+				} else {
+					// console.log(e.target.value + "해제")
+					category.delete(e.target.value)
+				}
+				// console.log(category);
+				createTrData();
+			}
+
+			
+			window.addEventListener("load", function() {
+				resetCategory();
+				makeCategory();
+				createTrData();
+
+				const sortCategoryChks = document.querySelectorAll("#sortCategory [name='sort-category']");
+				for(let i = 0; i < sortCategoryChks.length; i++) {
+				//	console.log("debugger;")
+					sortCategoryChks[i].addEventListener('click', setSortCategory);
+				}
+		
+			})
+
+			
+			
+			
+		
+			
+			
+			
+		
+	
+
+			</script>
 		</div><!-- //container -->
 	</div>
 </body>
