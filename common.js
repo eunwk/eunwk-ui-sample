@@ -479,16 +479,11 @@
 
 		const tab2Data = [
 			{
-				type: 'App',
-				fileName: '크롬앱만들기 Todo List',
-				summary: `
-					1. 현재시간 표시<br />
-					2. 이름을 입력하면, 인사말을 출력하고, 이름을 localStorage 에 저장<br />
-					3. toDoList 작성/삭제, localStorage 에 저장.<br />
-					4. 위치정보 가져오기, 날씨 API 사용
-				`,
-				tag: ["Date", "localStorage", "location"],
-				linkBlank: 'samples/js_chrome_app_lacalStorage.html',
+				type: 'test',
+				fileName: 'sampel',
+				summary: "online tutorials 스터디 샘플",
+				tag: [],
+				linkBlank: 'samples/test.html',
 			},
 		]
 
