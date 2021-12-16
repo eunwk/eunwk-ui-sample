@@ -89,36 +89,48 @@
 			/******************************** 
 			 **** checkbox 선택 시 tbody, checkbox 그룹 업데이트
 			********************************/
-			const setSiblingCheckboxChecked = (target, state) => {
-				
-				console.log( target, state)
-				target.parentElement.querySelectorAll("input[type=checkbox]").forEach((chk) => {
+			
+
+			const setSiblingCheckboxChecked = (target, state) => {			
+				console.log("state",document.querySelectorAll("#sortCategory input[type=checkbox]"))	;	
+				//debugger;
+				document.querySelectorAll("#sortCategory input[type=checkbox]:not([value=all])").forEach((chk) => {	
+					console.log("chk", chk)	;		
+				//	if(chk.id === "all") continue;	
 					chk.checked = state;
 				})
 			}
 			const setSortCategory = (e) => {	
-				console.log("click");	
-				if(e.target.value === "all") {		
+			//	
+				if(e.target.value === "all") {
+					
 					if(e.target.checked) {
 						resetCategory();
 						createTrData();
 						setSiblingCheckboxChecked(e.target, true);
 					} else {
+					
 						clearCategory();
 						createTrData();
 						setSiblingCheckboxChecked(e.target, false);
 					}
-				//	debugger;
+				  return;
 				}
-
+				// 클릭한게 all이 아닐경우	기존 all 이 checked되어 있다면 이를 해제
+				const all = document.querySelector("#all");		
+				if(all.checked) {
+					console.log("all.checked",all.checked)
+					all.checked = false;	
+				//	clearCategory();
+				}
+							
+				// 클릭한 체크박스에 해당하는 내용을 업데이트
 				if(e.target.checked) {
-					// console.log(e.target.value + "선택");
-					category.add(e.target.value)
+					category.add(e.target.value);
+				
 				} else {
-					// console.log(e.target.value + "해제")
 					category.delete(e.target.value)
 				}
-				// console.log(category);
 				createTrData();
 			}
 
