@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css로 만드는 Object Styling</title>
+  
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {background: #e38f66; display: flex; flex-wrap: wrap;}
+    body > div {margin: 50px;}
+    .box-radius {
+        width: 140px; 
+        height: 140px; 
+        box-sizing: border-box; 
+        background: #aa445f; 
+        border-radius: 50%; 
+        border: 30px solid #f7ec7d;   
+        border-left: 30px solid #aa445f; 
+        border-right: 30px solid #aa445f; 
+        transform: rotate(45deg);
+    }  
+    .box-radius.box2 {
+        background: #c45c77; 
+    }  
+    .box-radius.box3 {
+        box-shadow: 0 0 0 30px #aa445f;
+    } 
+    .box-shadow {
+        width: 140px; 
+        height: 140px; 
+        background: #f7ec7d;
+        border-radius: 50%;
+        position: relative;
+    } 
+    .box-shadow::before {
+        content:'';
+        position: absolute;
+        width: 140px;
+        height: 210px;
+        background: #cfc771;
+        z-index: -1;
+        border-radius: 70px;
+    }
+    .box-shadow.box2::before {
+        top: -70px;
+        background: #8a6f56;
+    }
+    /* 바람개비 */
+    .pinwheel {
+        width: 200px; 
+        height: 200px; 
+        position: relative;
+        background: #aa445f;
+    }
+    .pinwheel div {
+        position: absolute;
+        width: 100px;
+        height: 50px;
+        background: #f9e492;
+        top: calc(50% - 50px);
+        left: calc(50% - 100px);
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        transform-origin: bottom right;
+        transform: rotate(calc(90deg * var(--i)));
+    }
+    .pinwheel div:nth-child(odd) {
+        background: #4f77ff;
+    }
+
+
+    /* 산 */
+    .mountain {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        background: #fff1c1;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .mountain::before {
+        content: '';
+        position: absolute;
+        top: 90px;
+        left: 68px;
+        width: 150px;
+        /* height: 150px; */
+        background: #fe5f55;
+        transform: rotate(45deg);
+        aspect-ratio: 1; /* 기본값 auto, 이 값을 n값으로 설정하면 width의 범위내에서 box의 height 값이 비율대로 지정된다.*/
+        box-shadow: -30px 128px #fe5f55;
+    }
+</style>
+
+<body>
+   <div class="box-radius box1"></div>
+   <div class="box-radius box2"></div>
+   <div class="box-radius box3"></div>
+
+   <div class="box-shadow box1"></div>
+   <div class="box-shadow box2"></div>
+    
+   <!-- 바람개비 -->
+   <div class="pinwheel">
+       <div style="--i:0"></div>
+       <div style="--i:1"></div>
+       <div style="--i:2"></div>
+       <div style="--i:3"></div>
+   </div>
+
+   <!-- 산 -->
+   <div class="mountain"></div>
+</body>
+<script>
+   
+</script>
+
+</html>

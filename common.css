@@ -59,17 +59,13 @@ a {
     height: 60px;
 }
 
-
-
 .project_title {
     font-size: 18px;
-    color: #01b455;
     margin-right: 30px;
     display: inline-flex;
     align-items: center;
-    color: #666;
-    font-family: 'Nanum Brush Script', cursive;
-    font-size: 26px;
+    color: #244a97;
+    font-size: 23px;
 }
 
 .project_title img {

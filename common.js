@@ -194,13 +194,7 @@
 				linkBlank: 'samples/Glassmorphism_calendar.html',
 			},
 			
-			{
-				type: 'Element Custom',
-				fileName: 'input range Styling',
-				summary: 'input type="range" CSS 커스텀',
-				tag: ["css"],
-				linkBlank: 'samples/Slider_Custom.html',
-			},	
+			
 			
 		
 		
@@ -479,13 +473,21 @@
 
 		const tab2Data = [
 			{
-				type: 'test',
-				fileName: 'sampel',
-				summary: "online tutorials 스터디 샘플",
-				tag: [],
-				linkBlank: 'samples/test.html',
+				type: '폼요소',
+				fileName: 'input range Styling',
+				summary: 'input type="range" CSS 커스텀',
+				tag: ["css"],
+				linkBlank: 'samples/Slider_Custom.html',
+			},	
+			{
+				type: 'Object',
+				fileName: 'css로 만드는 Object Styling',
+				summary: 'css로 만드는 Object Styling',
+				tag: ["css", "css 변수", "--i, var(--i)"],
+				linkBlank: 'samples/CSS_Object.html',
 			},
 		]
+
 
         /******************************** 
 			 **** class SetTable 정의
