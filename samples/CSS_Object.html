@@ -99,6 +99,31 @@
         aspect-ratio: 1; /* 기본값 auto, 이 값을 n값으로 설정하면 width의 범위내에서 box의 height 값이 비율대로 지정된다.*/
         box-shadow: -30px 128px #fe5f55;
     }
+
+      /* 네모 */
+      .rect {
+          position: relative;
+          width: 30px;
+          height: 30px;
+          background: #1a4341;
+          transform: rotate(45deg) translate(80px, 40px);
+          box-shadow: 0 0 0 36px #f3ac3c, 0 0 0 67px #998235;
+      }
+      .rect::before, .rect::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 110%;
+          background: #f3ac3c;
+          top: -67px;
+      }
+      .rect::after {
+          width: 110%;
+          height: 100%;
+          background: #f3ac3c;
+          top: initial;
+          left: -68px;
+      }
 </style>
 
 <body>
@@ -119,6 +144,9 @@
 
    <!-- 산 -->
    <div class="mountain"></div>
+
+   <!-- 네모 -->
+   <div class="rect"></div>
 </body>
 <script>
    

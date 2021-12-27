@@ -58,13 +58,7 @@
 				tag: ["Math.random", "mix-blend-mode"],
 				linkBlank: 'samples/Random_color.html',
 			},	
-			{
-				type: '컨셉',
-				fileName: 'typography',
-				summary: "마우스 오버시 연기처럼 흩어지는 텍스트",
-				tag: ["javascript"],
-				linkBlank: 'samples/typography_ani_1.html',
-			},
+			
 			{
 				type: 'Button',
 				fileName: '버튼 애니메이션',
@@ -391,13 +385,7 @@
 				tag: ["svg", "filter", "feTurbulence"],
 				linkBlank: 'samples/SVG_Filter_Fire_1.html',
 			},	
-			{
-				type: 'SVG Animation',
-				fileName: '불타는 글자',
-				summary: "svg filter의 animate를 이용",
-				tag: ["svg", "filter", "feTurbulence"],
-				linkBlank: 'samples/SVG_Filter_Fire_2.html',
-			},	
+			
 			{
 				type: 'SVG Animation',
 				fileName: 'Water Wave Div',
@@ -405,13 +393,7 @@
 				tag: ["svg", "filter", "feTurbulence"],
 				linkBlank: 'samples/SVG_Filter_WavyDiv.html',
 			},	
-			{
-				type: 'SVG Animation',
-				fileName: 'Wavy Text',
-				summary: "svg filter를 이용해 Wave가 적용된 텍스트",
-				tag: ["svg", "filter", "feTurbulence"],
-				linkBlank: 'samples/SVG_Filter_WavyText.html',
-			},	
+				
 			{
 				type: 'SVG Animation',
 				fileName: 'Gooey 1',
@@ -427,13 +409,7 @@
 				linkBlank: 'samples/SVG_Filter_GooeyMove.html',
 			},	
 		
-			{
-				type: 'SVG Animation',
-				fileName: 'Text Stroke Animation',
-				summary: "텍스트의 주변을 따라 라인이 움직임",
-				tag: ["svg", "stroke-dasharray", "stroke-dashoffset"],
-				linkBlank: 'samples/SVG_StrokeAnimation_1.html',
-			},	
+			
 			{
 				type: 'SVG Animation',
 				fileName: 'Icon Stroke Animation',
@@ -468,6 +444,41 @@
 				summary: "svg code를 background image로 적용",
 				tag: ["svg"],
 				linkBlank: 'samples/SVG_Wave_Water.html',
+			},	
+			{
+				type: 'Typography',
+				fileName: 'Text bg - 물결이 차오름.',
+				summary: "Text bg 이미지를 이용한 CSS 물결 애니메이션<br />css의 -webkit-background-clip 속성을 이용하여 bg 마스크",
+				tag: ["CSS", "-webkit-background-clip"],
+				linkBlank: 'samples/CSS_Wave.html',
+			},
+			{
+				type: 'Typography',
+				fileName: '[SVG] Text Stroke Animation',
+				summary: "텍스트의 주변을 따라 라인이 움직임",
+				tag: ["svg", "stroke-dasharray", "stroke-dashoffset"],
+				linkBlank: 'samples/SVG_StrokeAnimation_1.html',
+			},	
+			{
+				type: 'Typography',
+				fileName: '[SVG] Wavy Text',
+				summary: "svg filter를 이용해 Wave가 적용된 텍스트",
+				tag: ["svg", "filter", "feTurbulence"],
+				linkBlank: 'samples/SVG_Filter_WavyText.html',
+			},
+			{
+				type: 'Typography',
+				fileName: '[SVG] 불타는 글자',
+				summary: "svg filter의 animate를 이용",
+				tag: ["svg", "filter", "feTurbulence"],
+				linkBlank: 'samples/SVG_Filter_Fire_2.html',
+			},	
+			{
+				type: 'Typography',
+				fileName: '마우스 오버시 연기처럼 흩어지는 텍스트',
+				summary: "마우스 오버시 연기처럼 흩어지는 텍스트",
+				tag: ["javascript"],
+				linkBlank: 'samples/typography_ani_1.html',
 			},	
 		];
 
