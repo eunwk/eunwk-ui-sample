@@ -426,6 +426,13 @@
 			},	
 			{
 				type: 'SVG Animation',
+				fileName: 'Loading - 로딩 2',
+				summary: "시차를 두고 돌아가는 동그라미 로딩 바",
+				tag: ["svg", "css"],
+				linkBlank: 'samples/SVG_Loding_2.html',
+			},	
+			{
+				type: 'SVG Animation',
 				fileName: '물결 애니메이션 1',
 				summary: "[플러그인 - gsap, wavify] Wave Animation ",
 				tag: ["plugin", "gsap", "wavify", "Greensock"],
@@ -449,7 +456,7 @@
 				type: 'Typography',
 				fileName: 'Text bg - 물결이 차오름.',
 				summary: "Text bg 이미지를 이용한 CSS 물결 애니메이션<br />css의 -webkit-background-clip 속성을 이용하여 bg 마스크",
-				tag: ["CSS", "-webkit-background-clip"],
+				tag: ["css", "-webkit-background-clip"],
 				linkBlank: 'samples/CSS_Wave.html',
 			},
 			{
