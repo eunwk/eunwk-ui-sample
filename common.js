@@ -453,6 +453,13 @@
 				linkBlank: 'samples/SVG_Wave_Water.html',
 			},	
 			{
+				type: 'SVG Animation',
+				fileName: 'ReactMon',
+				summary: "Svg ReactMon, requestAnimationFrame를 이용한 부드러운 감속",
+				tag: ["svg", "@keyframes", "requestAnimationFrame"],
+				linkBlank: 'samples/svg_reactMoon.html',
+			},
+			{
 				type: 'Typography',
 				fileName: 'Text bg - 물결이 차오름.',
 				summary: "Text bg 이미지를 이용한 CSS 물결 애니메이션<br />css의 -webkit-background-clip 속성을 이용하여 bg 마스크",
