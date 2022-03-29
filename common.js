@@ -45,7 +45,7 @@
 				linkBlank: 'samples/js_clock_1.html',
 			},
 			{
-				type: 'App',
+				type: 'Canvas',
 				fileName: '그림판만들기',
 				summary: "그림판 Canvas, Touch 이벤트에도 작동",
 				tag: ["Canvas"],
