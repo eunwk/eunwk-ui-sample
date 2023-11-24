@@ -187,11 +187,6 @@
 				tag: ["plugin", "dycalendar"],
 				linkBlank: 'samples/Glassmorphism_calendar.html',
 			},
-			
-			
-			
-		
-		
 			{
 				type: 'Parallax',
 				fileName: 'Parallax 1',
@@ -493,6 +488,13 @@
 				summary: "마우스 오버시 연기처럼 흩어지는 텍스트",
 				tag: ["javascript"],
 				linkBlank: 'samples/typography_ani_1.html',
+			},	
+			{
+				type: 'Mobile',
+				fileName: '키패드올라올때 input 딸려 올라가기',
+				summary: "키패드올라올때 input 딸려 올라가기 (모바일에서 확인해야 함)",
+				tag: ["javascript"],
+				linkBlank: 'samples/mobile/키패드올리기.html',
 			},	
 		];
 
