@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <!--{{ if (.Browser.FromPCWeb) }}-->
+  <meta name="viewport"
+    content="initial-scale=1.0, minimum-scale=1.0, width=device-width, viewport-fit=cover, user-scalable=no" />
+  <!--{{ else }}-->
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, width=device-width, viewport-fit=cover" />
+  <!--{{ end }}-->
+  <title>슬라이드 애니메이션</title>
+  <link rel="stylesheet" href="@@swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./page.css" />
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- 슬라이드 -->
+    <section class="content-section preview-section" id="anchor2">
+      <div class="inner">
+        <div class="swiper-container card-slider inmotion-section">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide picture">
+              <h4>내 계좌로 들어온<br>최애의 사진</h4>
+              <div class="wrap-picture">
+                <div class="photo">
+                  <ul>
+                    <li>
+                      <img src="@@3_pic-bg1.png" alt="">
+                      <div class="inter-contents">
+                        <img class="face1" src="@@3_pic-face1.png" alt="">
+                        <div class="obj">
+                          <img class="obj1-1" src="https://images.unsplash.com/photo-1503614472-8c93d56e92ce?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D" alt="">
+                          <img class="obj1-2" src="https://www.adobe.com/content/dam/cc/us/en/creative-cloud/photography/discover/landscape-photography/CODERED_B1_landscape_P2d_714x348.jpg.img.jpg" alt="">
+                          <img class="obj1-3" src="https://cdn.pixabay.com/photo/2019/10/13/13/19/landscape-4546121_960_720.jpg" alt="">
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <img src="./img/3_pic-bg2.png" alt="">
+                      <div class="inter-contents">
+                        <img class="face2" src="./img/3_pic-face2.png" alt="">
+                        <div class="obj">
+                          <img class="obj2-1" src="./img/3_pic-2-obj1.png" alt="">
+                          <img class="obj2-2" src="./img/3_pic-2-obj2.png" alt="">
+                          <img class="obj2-3" src="./img/3_pic-2-obj3.png" alt="">
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <img src="./img/3_pic-bg3.png" alt="">
+                      <div class="inter-contents">
+                        <img class="face3" src="./img/3_pic-face3.png" alt="">
+                        <div class="obj">
+                          <img class="obj3-1" src="./img/3_pic-3-obj1.png" alt="">
+                          <img class="obj3-2" src="./img/3_pic-3-obj2.png" alt="">
+                          <img class="obj3-3" src="./img/3_pic-3-obj3.png" alt="">
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <img src="./img/3_pic-bg1.png" alt="">
+                      <div class="inter-contents">
+                        <img class="face1" src="./img/3_pic-face1.png" alt="">
+                        <div class="obj">
+                          <img class="obj1-1" src="https://images.unsplash.com/photo-1503614472-8c93d56e92ce?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D" alt="">
+                          <img class="obj1-2" src="https://www.adobe.com/content/dam/cc/us/en/creative-cloud/photography/discover/landscape-photography/CODERED_B1_landscape_P2d_714x348.jpg.img.jpg" alt="">
+                          <img class="obj1-3" src="https://cdn.pixabay.com/photo/2019/10/13/13/19/landscape-4546121_960_720.jpg" alt="">
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="bottom">
+                  <img src="./img/3_photo-bottom.png" alt="" />
+                </div>
+              </div>
+             
+            </div>
+            <div class="swiper-slide role">
+              <div class="wrap-role">
+                <ul>
+                  <li class="frist">
+                    <div>
+                      <div class="typing-wrapper">
+                        <span class="place">첫번째 규칙</span>
+                        <span class="typing"></span>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div>두번째 규칙</div>
+                  </li>
+                  <li>
+                    <div>세번째 규칙</div>
+                  </li>
+                </ul>
+              </div>
+             
+            </div>
+            <div class="swiper-slide quick">
+              <div class="wrap-quick">
+                <ul>
+                  <li class="bg"><img src="./img/3_quick-bg.png" alt=""></li>
+                  <li class="dimmed"></li>
+                  <li class="end"><img src="./img/3_quick-memo_bottom.png" alt=""></li>
+                </ul>
+              </div>
+              
+            </div>
+            <div class="swiper-slide memo">
+              <div class="wrap-memo">
+                <div class="area-heart">
+                  <span class="heart"></span>
+                  <span class="heart"></span>
+                  <span class="heart"></span>
+                  <span class="heart"></span>
+                  <span class="heart"></span>
+                  <span class="heart"></span>
+                  <span class="heart"></span>
+                  <span class="heart"></span>
+                </div>
+                
+              </div>
+      
+            </div>
+            <div class="swiper-slide edge">
+              <div class="wrap-edge">
+                <ul class="flip-card">
+                  <li><img src="./img/3_card_s.png" alt="card" class="card_s"></li>
+                  <li><img src="./img/3_card_m.png" alt="card" class="card_m"></li>
+                  <li class="motion-card active">
+                    <img src="./img/3_card_back2.png" alt="card">
+                    <span class="card back"></span>
+                    <span class="card front"></span>
+                  </li>
+                  <li><img src="./img/3_card_m.png" alt="card" class="card_m"></li>
+                  <li><img src="./img/3_card_s.png" alt="card" class="card_s"></li>
+                </ul>
+              </div>
+              
+            </div>
+          </div>
+          <!--wrapper-->
+          <div class="swiper-pagination"></div>
+
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="../../jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+  <script src="./custom.js"></script>
+  <script src="./animation.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <!--{{ if (.Browser.FromPCWeb) }}-->
+  <meta name="viewport"
+    content="initial-scale=1.0, minimum-scale=1.0, width=device-width, viewport-fit=cover, user-scalable=no" />
+  <!--{{ else }}-->
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, width=device-width, viewport-fit=cover" />
+  <!--{{ end }}-->
+  <title>챠트 애니메이션</title>
+  <link rel="stylesheet" href="./page.css" />
+</head>
+
+<body>
+
+    <!-- page8 : 챠트 말풍선(반복) 애니메이션 -->
+    <div class="box">
+        <ul>
+            <li>
+                <span class="invest-bar bar-type1">
+                    <span class="invest-per invest-per14_3"><span class="screen_out">14.3%</span></span>
+                    <span class="invest-per invest-per8_3"><span class="screen_out">8.3%</span></span>
+                    <span class="invest-per invest-per18_6"><span class="screen_out">18.6%</span></span>
+                    <span class="invest-per invest-per10_8"><span class="screen_out">10.8%</span></span>
+                    <span class="invest-per invest-per16_1"><span class="screen_out">16.1%</span></span>
+                </span>
+                <span class="invest-tit">내 수익률</span>
+            </li>
+            <li>
+                <span class="invest-bar bar-type2">
+                    <span class="invest-per invest-per11_2"><span class="screen_out">11.2%</span></span>
+                </span>
+                <span class="invest-tit">같은성향 평균</span>
+            </li>
+        </ul>
+    </div>
+
+    <br />
+
+    <!-- page8 : 챠트 스마일  애니메이션 -->
+    <div class="box2">
+      <ul>
+        <li class="yearlater-bar bar-type1">
+        </li>
+        <li class="yearlater-bar bar-type2">
+          <span class="yearlater-smile"></span>
+        </li>
+      </ul>
+    </div>
+
+    <br />
+
+    <!-- page8 : 챠트 반도넛? (챠트 게이지 올라가면서 지정된 넘버 도달) 애니메이션 -->
+    <div class="box3">
+        <div class="soho-info__bg">
+          <svg width="110" height="88" viewBox="0 0 110 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M96.7044 82C101.59 74.3316 104.42 65.2265 104.42 55.4603C104.42 28.1441 82.2763 6 54.9602 6C27.6441 6 5.5 28.1441 5.5 55.4603C5.5 65.2265 8.33055 74.3316 13.216 82" stroke="#EEF0F2" stroke-width="10.8659" stroke-linecap="round"/>
+            <path class="chart-ani run_animation2" d="M13.7222 82C8.83283 74.3316 6 65.2265 6 55.4603C6 28.1441 28.1619 6 55.5 6C76.7599 6 94.8895 19.392 101.9 38.194C102.947 41.0019 103.746 43.9304 104.271 46.9531" stroke="#38CD85" stroke-width="10.8659" stroke-linecap="round"/>
+          </svg>
+          <div class="chart-num-box">
+            <div class="chart-num chart-num1">
+              <span class="count-num--item">8</span>
+              <span class="count-num--item">9</span>
+              <span class="count-num--item">0</span>
+              <span class="count-num--item">1</span>
+              <span class="count-num--item">2</span>
+              <span class="count-num--item">3</span>
+              <span class="count-num--item">4</span>
+              <span class="count-num--item">5</span>
+            </div>
+            <div class="chart-num chart-num2">
+              <span class="count-num--item">5</span>
+              <span class="count-num--item">6</span>
+              <span class="count-num--item">7</span>
+              <span class="count-num--item">8</span>
+              <span class="count-num--item">9</span>
+              <span class="count-num--item">0</span>
+              <span class="count-num--item">1</span>
+              <span class="count-num--item">2</span>
+            </div>
+            <div class="chart-num chart-num3">
+              <span class="count-num--item">4</span>
+              <span class="count-num--item">5</span>
+              <span class="count-num--item">6</span>
+              <span class="count-num--item">7</span>
+              <span class="count-num--item">8</span>
+              <span class="count-num--item">9</span>
+              <span class="count-num--item">0</span>
+              <span class="count-num--item">1</span>
+            </div>
+          </div>
+          <span class="soho-line line-type1" style="--width:75px"></span>
+          <span class="soho-line line-type2" style="--width:120px"></span>
+          <span class="soho-line line-type3" style="--width:56px"></span>
+        </div>
+      </div>
+
+  <script src="../../jquery.min.js"></script>
+
+</body>
+
+</html>

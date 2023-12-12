@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <!--{{ if (.Browser.FromPCWeb) }}-->
+  <meta name="viewport"
+    content="initial-scale=1.0, minimum-scale=1.0, width=device-width, viewport-fit=cover, user-scalable=no" />
+  <!--{{ else }}-->
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, width=device-width, viewport-fit=cover" />
+  <!--{{ end }}-->
+  <title>모션 애니메이션</title>
+  <link rel="stylesheet" href="./page.css" />
+</head>
+
+<body>
+
+  <!-- page9 : 폭죽, 동전 내려오는 애니메이션 -->
+  <div class="mini-join-box" style="border: 1px solid red;">
+    <div class="firecracker">
+      <span class="clip clip-bottom"></span>
+      <span class="square square-1"></span>
+      <span class="square square-2"></span>
+      <span class="square square-3"></span>
+      <span class="square square-4"></span>
+      <span class="square square-5"></span>
+      <span class="square square-6"></span>
+    </div>
+    <span class="s2-icon2 type1"></span>
+    <span class="s2-icon2 type2"></span>
+    <span class="s2-icon2 type3"></span>
+    <span class="s2-icon2 type4"></span>
+    <span class="s2-icon2 type5"></span>
+    <span class="s2-icon2 type6"></span>
+    <div class="join-txt">
+      <p>가입자 mini계좌로 즉시 지급</p>
+      <span>8.25 - 9.24 mini 생애 최초 가입 대상</span>
+    </div>
+  </div>
+
+  <br />
+
+  <!-- page9 : 선물상자 애니메이션 -->
+  <div class="event-gift" style="border: 1px solid red;">
+    <span class="gift-img"></span>
+    <span class="gift-img2"></span>
+    <span class="square square-1"></span>
+    <span class="square square-2"></span>
+    <span class="square square-3"></span>
+    <span class="square square-4"></span>
+    <span class="square square-5"></span>
+    <span class="square square-6"></span>
+  </div>
+
+  <br />
+
+  <!-- page9 : 스티커 scale이 커졌다 작아졌다 애니메이션 -->
+  <div class="event-box" style="border: 1px solid red;">
+    <img src="./img/img_notice.png" class="s5-sticker1" alt="" />
+    <img src="./img/img_notice.png" class="s5-sticker2" alt="" />
+    <img src="./img/img_notice.png" class="s5-sticker3" alt="" />
+  </div>
+
+
+  <br />
+
+  <!-- page9 : 좌측에서 우측으로 이동(집) 애니메이션 -->
+  <div class="house-box"  style="border: 1px solid red;">
+    <ul>
+      <li><span class="transferring-ani1"></span></li>
+      <li><span class="transferring-ani2"></span></li>
+      <li><span class="transferring-ani3"></span></li>
+      <li><span class="transferring-ani4"></span></li>
+    </ul>
+  </div>
+
+  <!-- <script src="../../jquery.min.js"></script> -->
+
+</body>
+
+</html>

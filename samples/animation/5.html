@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <!--{{ if (.Browser.FromPCWeb) }}-->
+  <meta name="viewport"
+    content="initial-scale=1.0, minimum-scale=1.0, width=device-width, viewport-fit=cover, user-scalable=no" />
+  <!--{{ else }}-->
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, width=device-width, viewport-fit=cover" />
+  <!--{{ end }}-->
+  <title>텍스트 상하 롤링 애니메이션</title>
+  <link rel="stylesheet" href="./page.css" />
+</head>
+
+<body>
+
+    <!-- page7 : 카드 펼쳐졌다 접히는 애니메이션 -->
+    <div class="ani-box fund-type-ani">
+        <span class="f-type f-type1"><img src="fund_type1.png" alt="00펀드"></span>
+        <span class="f-type f-type2"><img src="fund_type2.png" alt="00펀드"></span>
+        <span class="f-type f-type3"><img src="fund_type3.png" alt="00펀드"></span>
+        <span class="icon icon-search"><img src="icon_search.png" alt=""></span>
+    </div>
+
+    <!-- page7 : phone 배너영역 스케일 커지는 애니메이션 -->
+    <div class="ani-box fund-banner-ani">
+        <span>
+            <img src="fund_motion_banner.webp"  class="ico" alt="">
+            <span class="screen_out">꼭 확인해야 할 정보가 있어요. 확인하기</span>
+        </span>
+    </div>
+
+  <!-- <script src="../../jquery.min.js"></script> -->
+
+</body>
+
+</html>

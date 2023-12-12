@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <!--{{ if (.Browser.FromPCWeb) }}-->
+  <meta name="viewport"
+    content="initial-scale=1.0, minimum-scale=1.0, width=device-width, viewport-fit=cover, user-scalable=no" />
+  <!--{{ else }}-->
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, width=device-width, viewport-fit=cover" />
+  <!--{{ end }}-->
+  <title>텍스트 상하 롤링 애니메이션</title>
+  <!-- <link rel="stylesheet" href="./page.css" /> -->
+  <style>
+    .rolling-title span { opacity: 0; transform: translateY(-30px); transition: all 0.4s cubic-bezier(0.63, 0.06, 0.26, 1.18); position: absolute; top: 10px; left: 10px; width: 100%; text-align: left; color: #4E9DFF; font-size: 21px; line-height: 25px; font-weight: 800; }
+    .rolling-title span.on { opacity: 1; transform: translateY(0px); }
+    .rolling-title span.ed { opacity: 0; transform: translateY(30px); }
+  </style>
+</head>
+
+<body>
+
+  <div class="rolling-title" style="border: 1px solid red;">
+    <span class="rt1">댓글 달아줄 때</span>
+    <span class="rt1">라방할 때</span>
+    <span class="rt1">그냥 예쁠 때1</span>
+    <span class="rt1">그냥 예쁠 2</span>
+    <span class="rt1">그냥 예쁠 때3</span>
+    <span class="rt1">그냥 예쁠 때4</span>
+    <span class="rt1">그냥 예쁠 때5</span>
+    <span class="rt1">그냥 예쁠 때6</span>
+    <span class="rt1">그냥 예쁠 때7</span>
+    <span class="rt1">그냥 예쁠 때8</span>
+    <span class="rt1">그냥 예쁠 때9</span>
+    <span class="rt1">그냥 예쁠 때10</span>
+
+  </div>
+
+  <script src="../../jquery.min.js"></script>
+
+  <script>
+     // rolling-title/im
+     function rollingTitle(target, duration) {
+        $(target).eq(0).addClass('on');
+        var rollingTit = $(target);
+        var cnt = 0;
+        setInterval(function () {
+          cnt++;
+          if (cnt > rollingTit.length - 1) {
+            cnt = 0;
+          }
+          rollingTit.removeClass('on ed');
+          rollingTit.eq(cnt - 1).addClass('ed');
+          rollingTit.eq(cnt).addClass('on');
+        }, duration);
+      }
+      rollingTitle('.rolling-title span', 1500);
+  </script>
+</body>
+
+</html>

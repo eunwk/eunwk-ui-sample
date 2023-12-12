@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <!--{{ if (.Browser.FromPCWeb) }}-->
+  <meta name="viewport"
+    content="initial-scale=1.0, minimum-scale=1.0, width=device-width, viewport-fit=cover, user-scalable=no" />
+  <!--{{ else }}-->
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, width=device-width, viewport-fit=cover" />
+  <!--{{ end }}-->
+  <title>캐릭터,이미지 애니메이션</title>
+  <link rel="stylesheet" href="./page.css" />
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- 춘식이 얼굴,팔 상하 움직이는 애니메이션 -->
+    <span class="deco-chunsik" style="border: 1px solid red;">
+      <span class="arm-l"></span>
+      <span class="arm-r"></span>
+      <span class="face"></span>
+    </span>
+
+    <!-- 복주머니 애니메이션 -->
+    <div class="deco-pocket" style="border: 1px solid red;">
+      <span class="ir">빨간색 복주머니</span>
+    </div>
+
+    <!-- 설날: 구름, 해 움직이는 애니메이션  -->
+    <div class="visual-ani" style="border: 1px solid red;">
+      <span class="cloud1"></span>
+      <span class="cloud2"></span>
+      <span class="sun"></span>
+    </div>
+
+    <!-- 종 좌우로 흔들리는 애니메이션 -->
+    <div class="jong-ani" style="border: 1px solid red;"></div>
+
+    <!-- 배경이미지 특정영역에서 확대 축소 보여지는 애니메이션 -->
+    <div class="photo-ani" style="border: 1px solid red;">
+      <span class="frame"></span>
+      <span class="photo"></span>
+    </div>
+    
+    <!-- 배경이미지 특정영역에서 확대 축소 보여지는 애니메이션 -->
+    <div class="inner object-group" style="border: 1px solid red;">
+      <span class="object-icon obj-p"></span>
+      <span class="object-icon obj-g"></span>
+      <span class="object-icon obj-n"></span>
+    </div>
+
+    <!-- 360도 도는 (지구본,사람) 애니메이션 -->
+    <div class="motion-ani" style="border: 1px solid red;">
+      <div class="img-area">
+        <img class="kv-img img-building" src="./img/kvmotion1.png">
+        <img class="kv-img img-flag" src="./img/kvmotion5.png">
+        <img class="kv-img img-cloud" src="./img/kvmotion3.png">
+        <img class="kv-img img-human" src="./img/kvmotion4.png">
+        <img class="kv-img img-tree" src="./img/kvmotion7.png">
+        <img class="kv-img img-plant" src="./img/kvmotion6.png">
+      </div>
+    </div>
+
+    <!-- 이미지상하(음표,보석) 움직이는 애니메이션 -->
+    <div class="obj-ani" style="border: 1px solid red;">
+      <div class="dia ani-float"></div>
+      <div class="song ani-float"></div>
+    </div>
+
+    <!--이미지(데코레이션) 움직이는 애니메이션 -->
+    <div class="ico-box" style="border: 1px solid red;"> 
+      <span class="ico-particle type1"></span> 
+      <span class="ico-particle type2"></span> 
+    </div>
+    
+  </div>
+</body>
+
+</html>
