@@ -174,18 +174,25 @@
 			},
 			
 			{
-				type: 'Calendar',
+				type: '폼요소',
 				fileName: '캘린더 1',
 				summary: "only html, css로 구현된 캘린더. 기능 X",
 				tag: ["css"],
 				linkBlank: 'samples/CalendarUI_With_Grid.html',
 			},
 			{
-				type: 'Calendar',
+				type: '폼요소',
 				fileName: '캘린더 2',
 				summary: "[플러그인 - dycalendar] 을 이용한 캘린더",
 				tag: ["plugin", "dycalendar"],
 				linkBlank: 'samples/Glassmorphism_calendar.html',
+			},
+			{
+				type: '폼요소',
+				fileName: 'input formatter(Masking)',
+				summary: "인풋태그 마스킹 처리 ####-##-##",
+				tag: ["html", "javascript"],
+				linkBlank: 'samples/form_input_formatter.html',
 			},
 			{
 				type: 'Parallax',
