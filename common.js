@@ -51,35 +51,8 @@
 				tag: ["Canvas"],
 				linkBlank: 'samples/js_paintBoard.html',
 			},
-			{
-				type: '컨셉',
-				fileName: 'Random_color',
-				summary: "이미지 클릭시 배경이미지가 랜덤으로 바뀐다.",
-				tag: ["Math.random", "mix-blend-mode"],
-				linkBlank: 'samples/Random_color.html',
-			},	
 			
-			{
-				type: 'Button',
-				fileName: '버튼 애니메이션',
-				summary: "클릭하면 버튼 내부에 원이 퍼져나가는 애니메이션",
-				tag: ["javascript", "css"],
-				linkBlank: 'samples/svg_ButtonAnimation_1.html',
-			},
-			{
-				type: 'Button',
-				fileName: '버튼 애니메이션',
-				summary: "svg를 이용한 버튼 애니메이션",
-				tag: ["svg"],
-				linkBlank: 'samples/svg_ButtonAnimation_2.html',
-			},
-			{
-				type: 'Button',
-				fileName: '햄버거메뉴',
-				summary: "햄버거 메뉴 css 애니메이션",
-				tag: ["css"],
-				linkBlank: 'samples/Navigation_hamberger.html',
-			},
+			
 			{
 				type: 'Modal',
 				fileName: '모달 1',
@@ -87,99 +60,7 @@
 				tag: ["javascript"],
 				linkBlank: 'samples/modal_1.html',
 			},
-			{
-				type: 'Menu',
-				fileName: '네비 - 애니메이션 1',
-				summary: "마우스 오버 시 메뉴 하이라이트, 클릭시 active 클래스 추가",
-				tag: ["css", "javascript"],
-				linkBlank: 'samples/Glassmorphism_nav_magic_indicator.html',
-			},
-			{
-				type: 'Menu',
-				fileName: '네비 - 애니메이션 2',
-				summary: "마우스 클릭 시 메뉴 하단 '바'가 따라오는 애니메이션",
-				tag: ["css", "javascript"],
-				linkBlank: 'samples/Glassmorphism_nav_magic_indicator_2.html',
-			},	
-			{
-				type: 'Menu',
-				fileName: '네비 - 애니메이션 3',
-				summary: "마우스 오버시 메뉴 bg 애니메이션<br/>css content: attr(속성)을 사용",
-				tag: ["css"],
-				linkBlank: 'samples/Navigation_HoverAnimation.html',
-			},	
-			{
-				type: 'Menu',
-				fileName: '네비 - 애니메이션 4',
-				summary: "메뉴 hover 시 body bg 컬러 변경",
-				tag: ["javascript"],
-				linkBlank: 'samples/Navigation_HoverAnimation_Indicator.html',
-			},
-			
-			{
-				type: 'Menu',
-				fileName: '헤더영역 - 애니메이션',
-				summary: "스크롤을 아래로 내리면 헤더가 사라지고, 위로 올리면 헤더가 나타남",
-				tag: ["javascript"],
-				linkBlank: 'samples/Scroll_NaviAnimation.html',
-			},	
-			{
-				type: 'Menu',
-				fileName: '헤더영역 - Sticky',
-				summary: "스크롤을 하면 헤더의 일부 영역이 Sticky<br />yOffset과 fixed를 이용",
-				tag: ["javascript"],
-				linkBlank: 'samples/Scroll_NaviSticky.html',
-			},
-			{
-				type: 'Menu',
-				fileName: 'SideMenu - 반응형',
-				summary: "사이드 메뉴영역 확대 축소 및 반응형 처리. fontawesome 사용",
-				tag: ["fontawesome"],
-				linkBlank: 'samples/SidebarMenu_with_fontawesome.html',
-			},	
-			{
-				type: 'Menu',
-				fileName: 'SideMenu - 토글',
-				summary: "버튼을 눌러 사이드 메뉴 영역 show/hide",
-				tag: ["javascript"],
-				linkBlank: 'samples/Slider_Closing_Outside.html',
-			},	
-			{
-				type: 'Chart',
-				fileName: 'Progress - 원형 프로그래스',
-				summary: "svg를 이용한 프로그래스",
-				tag: ["svg"],
-				linkBlank: 'samples/Progress_circle.html',
-			},	
-			{
-				type: 'Chart',
-				fileName: 'Progress - 커스텀 스크롤바 (세로형)',
-				summary: "스크롤된 %에 맞춰 커스텀 Progress Scroll bar가 생성된다.",
-				tag: ["scroll", "progress"],
-				linkBlank: 'samples/Scrollbar_Customize_1.html',
-			},
-			{
-				type: 'Chart',
-				fileName: 'Progress - 커스텀 스크롤바 (가로형)',
-				summary: "스크롤된 %에 맞춰 커스텀 Progress bar가 생성된다.",
-				tag: ["scroll", "progress"],
-				linkBlank: 'samples/Scrollbar_indicator.html',
-			},
-			{
-				type: 'Chart',
-				fileName: '막대그래프',
-				summary: "only html, css",
-				tag: ["css"],
-				linkBlank: 'samples/Chart_virtialGraph.html',
-			},
-			
-			{
-				type: '폼요소',
-				fileName: '캘린더 1',
-				summary: "only html, css로 구현된 캘린더. 기능 X",
-				tag: ["css"],
-				linkBlank: 'samples/CalendarUI_With_Grid.html',
-			},
+
 			{
 				type: '폼요소',
 				fileName: '캘린더 2',
@@ -195,90 +76,198 @@
 				linkBlank: 'samples/form_input_formatter.html',
 			},
 			{
-				type: 'Parallax',
-				fileName: 'Parallax 1',
-				summary: "background image Parallax",
-				tag: ["mousemove", "clientX, clientY"],
-				linkBlank: 'samples/Parallax_1.html',
+				type: 'Table',
+				fileName: 'Table Row 이동',
+				summary: "drag 관련 이벤트. Table Row 이동",
+				tag: ["javascript"],
+				linkBlank: 'samples/table_drag.html',
+			},	
+			{
+				type: 'Mobile',
+				fileName: '키패드올라올때 input 딸려 올라가기',
+				summary: "키패드올라올때 input 딸려 올라가기 (모바일에서 확인해야 함)",
+				tag: ["javascript"],
+				linkBlank: 'samples/mobile/키패드올리기.html',
+			},	
+		];
+
+		const tab2Data = [
+			
+			{
+				type: '애니메이션',
+				fileName: '버튼 애니메이션',
+				summary: "클릭하면 버튼 내부에 원이 퍼져나가는 애니메이션",
+				tag: ["javascript", "css"],
+				linkBlank: 'samples/svg_ButtonAnimation_1.html',
 			},
 			{
-				type: 'Parallax',
-				fileName: 'Parallax 2',
-				summary: "css 변수를 이용한 background image, text Parallax",
-				tag: ["css 변수", "--i, var(--i)"],
-				linkBlank: 'samples/Parallax_2.html',
-			},
-					
-			{
-				type: 'Card Layout',
-				fileName: 'Swiper',
-				summary: "Swiper에 Depth 원근감 적용",
-				tag: ["Swiper"],
-				linkBlank: 'samples/Swiper_DepthOfCard.html',
+				type: '애니메이션',
+				fileName: '버튼 애니메이션',
+				summary: "svg를 이용한 버튼 애니메이션",
+				tag: ["svg"],
+				linkBlank: 'samples/svg_ButtonAnimation_2.html',
 			},
 			{
-				type: 'Card Layout',
-				fileName: 'ClipPath 애니메이션',
-				summary: "마우스 오버시 ClipPath 로 사각형 레이아웃 전환.<br/>사진에 마우스 오버시 Path 영역 애니메이션 되며 설명글로 전환",
-				tag: ["clip-path"],
-				linkBlank: 'samples/ClipPath_hoverEffect.html',
-			},
-			{
-				type: 'Card Layout',
-				fileName: '카드 레이아웃 1',
-				summary: "마우스 오버 시 컨텐츠가 올라오는 애니메이션",
+				type: '애니메이션',
+				fileName: '버튼 - 햄버거메뉴',
+				summary: "햄버거 메뉴 css 애니메이션",
 				tag: ["css"],
-				linkBlank: 'samples/Glassmorphism_tilt.html',
+				linkBlank: 'samples/Navigation_hamberger.html',
 			},
 			{
-				type: 'Card Layout',
-				fileName: '카드 레이아웃 2',
-				summary: "마우스 오버시 사각형 모양이 변경되는 레이아웃",
-				tag: ["CSS Animation", "Card Layout"],
-				linkBlank: 'samples/Glassmorphism_hover_tranform.html',
+				type: '애니메이션',
+				fileName: 'GNB 메뉴 - 애니메이션 1',
+				summary: "마우스 오버 시 메뉴 하이라이트, 클릭시 active 클래스 추가",
+				tag: ["css", "javascript"],
+				linkBlank: 'samples/Glassmorphism_nav_magic_indicator.html',
 			},
 			{
-				type: 'Card Layout',
-				fileName: '카드 레이아웃 3',
-				summary: "마우스 오버시 위로 이동했다 내려오며 앞으로 튀어나오는 카드 z-index",
+				type: '애니메이션',
+				fileName: 'GNB 메뉴 - 애니메이션 2',
+				summary: "마우스 클릭 시 메뉴 하단 '바'가 따라오는 애니메이션",
+				tag: ["css", "javascript"],
+				linkBlank: 'samples/Glassmorphism_nav_magic_indicator_2.html',
+			},	
+			{
+				type: '애니메이션',
+				fileName: 'GNB 메뉴 - 애니메이션 3',
+				summary: "마우스 오버시 메뉴 bg 애니메이션<br/>css content: attr(속성)을 사용",
 				tag: ["css"],
-				linkBlank: 'samples/Glassmorphism_2.html',
+				linkBlank: 'samples/Navigation_HoverAnimation.html',
+			},	
+			{
+				type: '애니메이션',
+				fileName: 'GNB 메뉴 - 애니메이션 4',
+				summary: "메뉴 hover 시 body bg 컬러 변경",
+				tag: ["javascript"],
+				linkBlank: 'samples/Navigation_HoverAnimation_Indicator.html',
 			},
 			{
-				type: 'Card Layout',
-				fileName: '카드 레이아웃 4',
+				type: '애니메이션',
+				fileName: 'odometer',
+				summary: "[플러그인 - odometer]",
+				tag: ["plugin", "odometer"],
+				linkBlank: 'samples/NumberCounter_odometer.html',
+			},	
+			{
+				type: '애니메이션',
+				fileName: '시간 차 애니메이션',
 				summary: "위아래로 오르락 내리락 하는 사각형들<br/>css 변수를 이용하여 시차를 두고 애니메이션 됨.",
 				tag: ["css 변수", "--i, var(--i)"],
 				linkBlank: 'samples/Glassmorphism_1.html',
 			},
 			{
-				type: 'Card Layout',
-				fileName: '3D Ainmation - 카드 뒤집기',
-				summary: "마우스 오버시 뒤집어 지는 카드",
-				tag: ["perspective", "backface-visibility", "rotateY", "preserve-3d", "Card Layout"],
-				linkBlank: 'samples/Glassmorphism_3DTransform_Card.html',
+				type: 'Typography',
+				fileName: 'Text bg - 물결이 차오름.',
+				summary: "Text bg 이미지를 이용한 CSS 물결 애니메이션<br />css의 -webkit-background-clip 속성을 이용하여 bg 마스크",
+				tag: ["css", "-webkit-background-clip"],
+				linkBlank: 'samples/CSS_Wave.html',
 			},
 			{
-				type: 'Scroll Paging',
-				fileName: '스크롤 페이징',
-				summary: "[플러그인 - skrollr]상하 스크롤 시 페이지 섹션이 좌우로 이동.",
-				tag: ["plugin", "skrollr"],
+				type: 'Typography',
+				fileName: '[SVG] Text Stroke Animation',
+				summary: "텍스트의 주변을 따라 라인이 움직임",
+				tag: ["svg", "stroke-dasharray", "stroke-dashoffset"],
+				linkBlank: 'samples/SVG_StrokeAnimation_1.html',
+			},	
+			{
+				type: 'Typography',
+				fileName: '[SVG] Wavy Text',
+				summary: "svg filter를 이용해 Wave가 적용된 텍스트",
+				tag: ["svg", "filter", "feTurbulence"],
+				linkBlank: 'samples/SVG_Filter_WavyText.html',
+			},
+			{
+				type: 'Typography',
+				fileName: '[SVG] 불타는 글자',
+				summary: "svg filter의 animate를 이용",
+				tag: ["svg", "filter", "feTurbulence"],
+				linkBlank: 'samples/SVG_Filter_Fire_2.html',
+			},	
+			{
+				type: 'Typography',
+				fileName: '마우스 오버시 연기처럼 흩어지는 텍스트',
+				summary: "마우스 오버시 연기처럼 흩어지는 텍스트",
+				tag: ["javascript"],
+				linkBlank: 'samples/typography_ani_1.html',
+			},	
+			{
+				type: 'Scroll Ani',
+				fileName: '스크롤 애니메이션 1',
+				summary: "1분코딩 스크롤 애니메이션 예제<br/>IntersectionObserver을 이용한 애니메이션 처리",
+				tag: ["IntersectionObserver"],
+				linkBlank: 'samples/Scroll_Animation_1.html',
+			},	
+			{
+				type: 'Scroll Ani',
+				fileName: '스크롤 애니메이션 2',
+				summary: "스크롤되면 동그라미(clip-path)가 커지면서 background 이미지가 확대",
+				tag: ["clip-path"],
+				linkBlank: 'samples/Scroll_Animation_2.html',
+			},	
+			{
+				type: 'Scroll Ani',
+				fileName: '스크롤 애니메이션 3',
+				summary: "스크롤되면 하트(svg)가 커지면서 background 이미지가 확대",
+				tag: ["svg"],
+				linkBlank: 'samples/Scroll_Animation_2_SVG.html',
+			},
+			{
+				type: 'Scroll Ani',
+				fileName: '스크롤 애니메이션 4',
+				summary: "스크롤되면 이미지 fadeout",
+				tag: ["css opacity"],
+				linkBlank: 'samples/Scroll_Animation_2_opacity.html',
+			},	
+			{
+				type: 'Scroll Ani',
+				fileName: '스크롤 애니메이션 5',
+				summary: "스크롤되면 하단 빗금 각도가 평평해짐",
+				tag: ["transform skew"],
+				linkBlank: 'samples/Scroll_Animation_3.html',
+			},	
+			{
+				type: 'Scroll Ani',
+				fileName: '스크롤 애니메이션 6',
+				summary: "스크롤되면 곡선으로 된 라인이 평평해짐",
+				tag: ["transform scale"],
 				linkBlank: 'samples/Scroll_Animation_4.html',
+			},	
+			{
+				type: 'Scroll Ani',
+				fileName: '스크롤 애니메이션 7',
+				summary: "[플러그인 - jarallax] 스크롤 애니메이션과 패럴랙스",
+				tag: ["plugin", "jarallax"],
+				linkBlank: 'samples/Scroll_parallax.html',
 			},
 			{
-				type: 'Scroll Paging',
+				type: 'Scroll Ani',
 				fileName: 'Scroll To',
 				summary: "메뉴 클릭시 해당 섹션으로 부드럽게 이동",
 				tag: ["scroll-behavior"],
 				linkBlank: 'samples/ScrollTo_Navigation.html',
 			},
 			{
-				type: 'odometer',
-				fileName: 'odometer',
-				summary: "[플러그인 - odometer]",
-				tag: ["plugin", "odometer"],
-				linkBlank: 'samples/NumberCounter_odometer.html',
+				type: 'Scroll Ani',
+				fileName: '스크롤 페이징',
+				summary: "[플러그인 - skrollr]상하 스크롤 시 페이지 섹션이 좌우로 이동.",
+				tag: ["plugin", "skrollr"],
+				linkBlank: 'samples/Scroll_Animation_4.html',
+			},
+			{
+				type: 'Scroll Ani',
+				fileName: '헤더영역 - 애니메이션',
+				summary: "스크롤을 아래로 내리면 헤더가 사라지고, 위로 올리면 헤더가 나타남",
+				tag: ["javascript"],
+				linkBlank: 'samples/Scroll_NaviAnimation.html',
 			},	
+			{
+				type: 'Scroll Ani',
+				fileName: '헤더영역 - Sticky',
+				summary: "스크롤을 하면 헤더의 일부 영역이 Sticky<br />yOffset과 fixed를 이용",
+				tag: ["javascript"],
+				linkBlank: 'samples/Scroll_NaviSticky.html',
+			},
 			{
 				type: 'Mousemove Ani',
 				fileName: 'createElement',
@@ -323,56 +312,7 @@
 				linkBlank: 'samples/Slider_split.html',
 			},	
 			
-			{
-				type: 'Scroll Ani',
-				fileName: '스크롤 애니메이션 1',
-				summary: "1분코딩 스크롤 애니메이션 예제<br/>IntersectionObserver을 이용한 애니메이션 처리",
-				tag: ["IntersectionObserver"],
-				linkBlank: 'samples/Scroll_Animation_1.html',
-			},	
-			{
-				type: 'Scroll Ani',
-				fileName: '스크롤 애니메이션 2',
-				summary: "스크롤되면 동그라미(clip-path)가 커지면서 background 이미지가 확대",
-				tag: ["clip-path"],
-				linkBlank: 'samples/Scroll_Animation_2.html',
-			},	
-			{
-				type: 'Scroll Ani',
-				fileName: '스크롤 애니메이션 3',
-				summary: "스크롤되면 하트(svg)가 커지면서 background 이미지가 확대",
-				tag: ["svg"],
-				linkBlank: 'samples/Scroll_Animation_2_SVG.html',
-			},
-			{
-				type: 'Scroll Ani',
-				fileName: '스크롤 애니메이션 4',
-				summary: "스크롤되면 이미지 fadeout",
-				tag: ["css opacity"],
-				linkBlank: 'samples/Scroll_Animation_2_opacity.html',
-			},	
 			
-			{
-				type: 'Scroll Ani',
-				fileName: '스크롤 애니메이션 5',
-				summary: "스크롤되면 하단 빗금 각도가 평평해짐",
-				tag: ["transform skew"],
-				linkBlank: 'samples/Scroll_Animation_3.html',
-			},	
-			{
-				type: 'Scroll Ani',
-				fileName: '스크롤 애니메이션 6',
-				summary: "스크롤되면 곡선으로 된 라인이 평평해짐",
-				tag: ["transform scale"],
-				linkBlank: 'samples/Scroll_Animation_4.html',
-			},	
-			{
-				type: 'Scroll Ani',
-				fileName: '스크롤 애니메이션 7',
-				summary: "[플러그인 - jarallax] 스크롤 애니메이션과 패럴랙스",
-				tag: ["plugin", "jarallax"],
-				linkBlank: 'samples/Scroll_parallax.html',
-			},	
 			{
 				type: 'SVG Animation',
 				fileName: '꿈틀거리는 라인',
@@ -462,50 +402,38 @@
 				linkBlank: 'samples/svg_reactMoon.html',
 			},
 			{
-				type: 'Typography',
-				fileName: 'Text bg - 물결이 차오름.',
-				summary: "Text bg 이미지를 이용한 CSS 물결 애니메이션<br />css의 -webkit-background-clip 속성을 이용하여 bg 마스크",
-				tag: ["css", "-webkit-background-clip"],
-				linkBlank: 'samples/CSS_Wave.html',
+				type: 'Parallax',
+				fileName: 'Parallax 1',
+				summary: "background image Parallax",
+				tag: ["mousemove", "clientX, clientY"],
+				linkBlank: 'samples/Parallax_1.html',
 			},
 			{
-				type: 'Typography',
-				fileName: '[SVG] Text Stroke Animation',
-				summary: "텍스트의 주변을 따라 라인이 움직임",
-				tag: ["svg", "stroke-dasharray", "stroke-dashoffset"],
-				linkBlank: 'samples/SVG_StrokeAnimation_1.html',
-			},	
-			{
-				type: 'Typography',
-				fileName: '[SVG] Wavy Text',
-				summary: "svg filter를 이용해 Wave가 적용된 텍스트",
-				tag: ["svg", "filter", "feTurbulence"],
-				linkBlank: 'samples/SVG_Filter_WavyText.html',
+				type: 'Parallax',
+				fileName: 'Parallax 2',
+				summary: "css 변수를 이용한 background image, text Parallax",
+				tag: ["css 변수", "--i, var(--i)"],
+				linkBlank: 'samples/Parallax_2.html',
 			},
 			{
-				type: 'Typography',
-				fileName: '[SVG] 불타는 글자',
-				summary: "svg filter의 animate를 이용",
-				tag: ["svg", "filter", "feTurbulence"],
-				linkBlank: 'samples/SVG_Filter_Fire_2.html',
-			},	
+				type: 'ClipPath',
+				fileName: 'ClipPath 애니메이션',
+				summary: "마우스 오버시 ClipPath 로 사각형 레이아웃 전환.<br/>사진에 마우스 오버시 Path 영역 애니메이션 되며 설명글로 전환",
+				tag: ["clip-path"],
+				linkBlank: 'samples/ClipPath_hoverEffect.html',
+			},
 			{
-				type: 'Typography',
-				fileName: '마우스 오버시 연기처럼 흩어지는 텍스트',
-				summary: "마우스 오버시 연기처럼 흩어지는 텍스트",
-				tag: ["javascript"],
-				linkBlank: 'samples/typography_ani_1.html',
-			},	
-			{
-				type: 'Mobile',
-				fileName: '키패드올라올때 input 딸려 올라가기',
-				summary: "키패드올라올때 input 딸려 올라가기 (모바일에서 확인해야 함)",
-				tag: ["javascript"],
-				linkBlank: 'samples/mobile/키패드올리기.html',
-			},	
-		];
+				type: '3D 애니메이션',
+				fileName: '3D Ainmation - 카드 뒤집기',
+				summary: "마우스 오버시 뒤집어 지는 카드",
+				tag: ["perspective", "backface-visibility", "rotateY", "preserve-3d", "Card Layout"],
+				linkBlank: 'samples/Glassmorphism_3DTransform_Card.html',
+			},
+	
+	
+		]
 
-		const tab2Data = [
+		const tab3Data = [
 			{
 				type: '폼요소',
 				fileName: 'input range Styling',
@@ -514,11 +442,54 @@
 				linkBlank: 'samples/Slider_Custom.html',
 			},	
 			{
-				type: 'Object',
+				type: 'CSS 도형',
 				fileName: 'css로 만드는 Object Styling',
 				summary: 'css로 만드는 Object Styling',
 				tag: ["css", "css 변수", "--i, var(--i)"],
 				linkBlank: 'samples/CSS_Object.html',
+			},
+			{
+				type: '차트',
+				fileName: 'Progress - 원형 프로그래스',
+				summary: "svg를 이용한 프로그래스",
+				tag: ["svg"],
+				linkBlank: 'samples/Progress_circle.html',
+			},	
+			{
+				type: '차트',
+				fileName: 'Progress - 커스텀 스크롤바 (세로형)',
+				summary: "스크롤된 %에 맞춰 커스텀 Progress Scroll bar가 생성된다.",
+				tag: ["scroll", "progress"],
+				linkBlank: 'samples/Scrollbar_Customize_1.html',
+			},
+			{
+				type: '차트',
+				fileName: 'Progress - 커스텀 스크롤바 (가로형)',
+				summary: "스크롤된 %에 맞춰 커스텀 Progress bar가 생성된다.",
+				tag: ["scroll", "progress"],
+				linkBlank: 'samples/Scrollbar_indicator.html',
+			},
+			{
+				type: '차트',
+				fileName: '막대그래프',
+				summary: "only html, css",
+				tag: ["css"],
+				linkBlank: 'samples/Chart_virtialGraph.html',
+			},
+			{
+				type: 'CSS 필터',
+				fileName: 'Random_color',
+				summary: "이미지 클릭시 배경이미지가 랜덤으로 바뀐다.",
+				tag: ["Math.random", "mix-blend-mode"],
+				linkBlank: 'samples/Random_color.html',
+			},	
+			
+			{
+				type: '캘린더',
+				fileName: '캘린더 1',
+				summary: "only html, css로 구현된 캘린더. 기능 X",
+				tag: ["css"],
+				linkBlank: 'samples/CalendarUI_With_Grid.html',
 			},
 		]
 
@@ -580,7 +551,7 @@
 									return `<span class="tag">${tag}</span>`	
 								}).join('')
 							}</td>
-							<td><a href="${item.linkBlank}" target="_blank">새창</a></td>
+							<td><a href="${item.linkBlank}" target="_new">새창</a></td>
 						</tr>
 					`;
 				})
@@ -646,6 +617,7 @@
 		// 클래스 호출
 		const table1 = new SetTable(document.querySelector("#tbl1"), tab1Data);
 		const table2 = new SetTable(document.querySelector("#tbl2"), tab2Data);
+		const table3 = new SetTable(document.querySelector("#tbl3"), tab3Data);
 
 			
 		window.addEventListener("load", function() {
@@ -657,6 +629,11 @@
 			table2.makeCategory();
 			table2.createTrData();
 			table2.addEvent();
+			table3.resetCategory();
+			table3.makeCategory();
+			table3.createTrData();
+			table3.addEvent();
+
 
 		})
 })();

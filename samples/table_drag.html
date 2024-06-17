@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테이블 드래그 Row</title>
+    <style>
+        html {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+        }
+
+        /*옮길때 불투명으로 보이는 부분*/
+        tr.dragging {
+            opacity: 0.5;
+            position: relative;
+        }
+
+        tr.dragging > *:first-child::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            z-index: 1;
+            background: #000;
+        }
+
+    </style>
+    <link rel="stylesheet" href="../common.css" />
+</head>
+
+<body>
+    <div style="max-width: 600px;">
+    <h2 class="section_title">1. UI 리스트</h2>
+    <table class="tbl-responsive dragable">
+        <colgroup>
+            <col style="width:15%">
+            <col style="width:20%">
+            <col style="width:20%">
+            <col >
+        </colgroup>
+        <thead>
+            <tr>
+                <th scope="col">구분</th>
+                <th scope="col">파일명</th>
+                <th scope="col">요약</th>
+                <th scope="col">태그</th>
+            </tr>
+        </thead>
+        <tbody>
+            <script>
+                const tbody = document.querySelector(".dragable tbody");
+                Array(10).fill('').forEach((item, index)=>{			
+                    const tr = document.createElement("tr");
+                    const tdContent = `
+                        <th scope="row">${index}</th>
+                        <td>일이삼</td>
+                        <td>일이삼</td>
+                        <td>일이삼</td>
+                    `;
+                    tr.innerHTML = tdContent;
+                    tbody.appendChild(tr);
+                })
+                
+            </script>
+        </tbody>
+    </table>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const rows = document.querySelectorAll('.dragable tbody > tr');
+
+    rows.forEach((row, index) => {
+        row.setAttribute("data-rowId", index);
+        row.draggable = true;
+
+        row.addEventListener('dragstart', e => {
+            row.classList.add('dragging');
+           //  e.dataTransfer.setData('text/plain', row.dataset.rowId); // dataTransfer 설정
+           // console.log("dragstart: ", row.dataset.rowId);
+        });
+
+        row.addEventListener('dragend', e => {
+            row.classList.remove('dragging');
+           // console.log("dragend");
+        });
+    });
+
+    const dropzone = document.querySelector('.dragable tbody');
+
+    dropzone.addEventListener('dragover', e => {
+        e.preventDefault();
+        console.log("dragover"); // 드래그 오버 이벤트 확인
+
+        const afterElement = getDragAfterElement(dropzone, e.clientY);
+        const draggable = document.querySelector('.dragging');
+
+        if (afterElement == null) {
+            dropzone.appendChild(draggable);
+        } else {
+            dropzone.insertBefore(draggable, afterElement);
+        }
+    });
+
+    dropzone.addEventListener('drop', e => {
+        e.preventDefault();
+        console.log("drop"); // 드롭 이벤트 확인
+    });
+
+    function getDragAfterElement(container, y) {
+        const draggableElements = [...container.querySelectorAll('tr:not(.dragging)')];
+
+        return draggableElements.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = y - box.top - box.height / 2;
+
+            if (offset < 0 && offset > closest.offset) {
+                return { offset: offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+});
+</script>
+</body>
+
+</html>

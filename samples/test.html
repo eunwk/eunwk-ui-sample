@@ -1,22 +1,47 @@
 <!DOCTYPE html>
-<html lang="ko">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>css로 만드는 Object Styling</title>
-  
+    <title>Drag Image Styling</title>
+    <style>
+        .draggable {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            border: 1px solid blue;
+            cursor: grab;
+        }
+
+        .drag-image {
+            width: 100px;
+            height: 100px;
+            background-color: lightgreen;
+            border: 1px solid green;
+            opacity: 0.7;
+        }
+    </style>
 </head>
-<style>
-   
-</style>
-
 <body>
+    <div class="draggable" draggable="true">Drag me!</div>
+    <script>
+        document.querySelector('.draggable').addEventListener('dragstart', function(event) {
+            // Create a custom drag image
+            const dragImage = document.createElement('div');
+            dragImage.classList.add('drag-image');
+            dragImage.textContent = 'Dragging...';
 
+            // Append the drag image to the body
+            document.body.appendChild(dragImage);
+
+            // Set the custom drag image
+            event.dataTransfer.setDragImage(dragImage, 0, 0);
+
+            // Remove the drag image after a delay to ensure it is used
+            setTimeout(() => {
+                document.body.removeChild(dragImage);
+            }, 0);
+        });
+    </script>
 </body>
-<script>
-   
-</script>
-
 </html>
