@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>onlineTutorials | Slider</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../common.css" />
+  </head>
+  <style></style>
+
+  <body>
+    <div class="sample-container">
+      <h1 class="page-title">폼요소</h1>
+
+      <section class="section">
+        <h2 class="section-title">input formatter(Masking) - 마스킹 처리</h2>
+        <table class="tbl-responsive">
+          <colgroup>
+            <col style="width: 140px" />
+            <col />
+          </colgroup>
+          <tbody>
+            <tr>
+              <th class="">숫자 format</th>
+              <td class="al">
+                <input
+                  type="text"
+                  autocomplete="off"
+                  data-format="####-##-##"
+                  title="포맷적용 샘플1"
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <th>영자 + 숫자 format</th>
+              <td class="al">
+                <input
+                  type="text"
+                  autocomplete="off"
+                  data-format="AA##-##-##"
+                  title="포맷적용 샘플1"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>주민번호</th>
+              <td class="al">
+                <input
+                  type="text"
+                  autocomplete="off"
+                  data-format="######-#######"
+                  title="포맷적용 샘플1"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <!-- // .section -->
+
+      <section class="section">
+        <h2 class="section-title">커스텀 파일 다이알로그</h2>
+        <table class="tbl-responsive">
+          <colgroup>
+            <col style="width: 140px" />
+            <col />
+          </colgroup>
+          <tbody>
+            <tr>
+              <th class="">파일찾기</th>
+              <td class="al">
+                <div>
+                  <input
+                    type="text"
+                    autocomplete="off"
+                    title="첨부파일"
+                    placeholder="파일을 첨부하세요."
+                    readonly
+                  />
+                  <button type="button" class="btn" data-role="dialog">파일찾기</button>
+                  <!-- 첨부 파일 확장자 제한 accept에서 지정, 여러 개일 경우 , 로 구분합니다.-->
+                  <input type="file" accept=".jpg, .png" style="display: none;" />
+                  <button type="button" class="clear btn">입력값 삭제</button>
+                  <span>(첨부가능 파일 jpg, png)</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+    <!-- // .sample-container -->
+    <script>
+      /**
+       * Input Mask Formatting
+       * TODO: 2024/06/11
+       *
+       */
+      const setInputFormatting = () => {
+        const inputs = document.querySelectorAll("input[data-format]");
+
+        inputs.forEach(function (input) {
+          const format = input.getAttribute("data-format");
+          const placeholder = format.replace(/#/g, "0").replace(/A/g, "A");
+          input.setAttribute("placeholder", placeholder);
+
+          input.addEventListener("input", function () {
+            let value = input.value.replace(/[^0-9A-Za-z\-]/g, ""); // 숫자, 알파벳, '-'만 남김
+            let formattedValue = "";
+            let formatIndex = 0;
+
+            // 소문자를 대문자로 변환
+            value = value.toUpperCase();
+
+            // 입력된 문자열을 포맷팅
+            for (
+              let i = 0;
+              i < value.length && formatIndex < format.length;
+              i++
+            ) {
+              if (format[formatIndex] === "#") {
+                // 숫자 체크
+                if (/\d/.test(value[i])) {
+                  formattedValue += value[i];
+                  formatIndex++;
+                }
+              } else if (format[formatIndex] === "A") {
+                // 알파벳 체크
+                if (/[A-Za-z]/.test(value[i])) {
+                  formattedValue += value[i];
+                  formatIndex++;
+                }
+              } else {
+                if (value[i] === format[formatIndex]) {
+                  // value[i] 와 format[formatIndex]) 가 동일한지 체크. 즉('-') 인지 확인
+                  formattedValue += format[formatIndex];
+                  formatIndex++;
+                } else {
+                  formattedValue += format[formatIndex];
+                  formatIndex++;
+                  i--;
+                }
+              }
+            }
+            input.value = formattedValue;
+          });
+        });
+      };
+
+      /**
+       * openDialog: fileDialog 호출함수 - data-role=dialog 속성을 가진 버튼을 클릭할 경우 fileDialog를 호출한다.
+       * TODO: 2024/06/26
+       *
+       */
+
+      const openDialog = () => {
+        const btnDialogs = document.querySelectorAll(
+          "button[data-role=dialog]"
+        );
+        btnDialogs.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            const input = btn.parentNode.querySelector("input[type=text]");
+            const fileDialog = btn.parentNode.querySelector("input[type=file]");
+            const btnClean = btn.parentNode.querySelector(".clear");
+
+            // 파일 선택 후 처리
+            fileDialog.addEventListener("change", function () {
+              if (fileDialog.files.length > 0) {
+                input.value = fileDialog.files[0].name;
+              }
+            });
+
+            // 입력 값 지우기 처리
+            btnClean.addEventListener("click", function () {
+              input.value = "";
+              fileDialog.value = "";
+            });
+            // 다이알로그 오픈
+            fileDialog.click();
+          });
+        });
+      };
+
+      document.addEventListener("DOMContentLoaded", function () {
+        setInputFormatting();
+        openDialog();
+      });
+    </script>
+  </body>
+</html>

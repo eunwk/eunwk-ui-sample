@@ -20,6 +20,10 @@ body {
 
 }
 
+span, input, button, a, img {
+    vertical-align: middle;
+}
+
 ol,
 ul,
 dl,
@@ -36,10 +40,28 @@ a {
     text-decoration: none;
 }
 
+input[type="text"] {
+    border: 1px solid #ddd;
+    height: 30px;
+    border-radius: 4px;
+    text-indent: 10px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:read-only {
+    background: #f1f1f1;
+}
+
+::placeholder {
+      color: #999;
+}
+
+
 #wrapper {
     height: 100%;
 }
 
+/* index 페이지 컨테이너 */
 #container {
     padding: 30px;
     overflow-y: scroll;
@@ -203,6 +225,9 @@ tbody th {
     margin-right: 3px;
 }
 
+.hidden { position:absolute !important;left:-9999px;width:1px;height:1px;font-size:0;line-height:0;overflow:hidden; }
+
+
 @media all and (max-width: 1023px) {
     #container{
         padding: 30px 15px;
@@ -232,4 +257,41 @@ tbody th {
         border-bottom: 0;
         border-right: 0;
     }
+}
+
+
+/***** 샘플 페이지 레이아웃 *****/
+.sample-container {
+    height: 100vh;
+    padding: 30px;
+}
+
+.section {
+    
+}
+
+.section + .section {
+    margin-top: 40px;
+}
+
+.page-title {
+    font-size: 20px;
+    margin-bottom: 32px;
+}
+
+
+.section-title {
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+.btn {
+    box-sizing: border-box;
+    appearance: none;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 0 12px;
+    height: 30px;
+    vertical-align: middle;
+    background: #fff;
 }

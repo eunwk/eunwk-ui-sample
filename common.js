@@ -70,10 +70,12 @@
 			},
 			{
 				type: '폼요소',
-				fileName: 'input formatter(Masking)',
-				summary: "인풋태그 마스킹 처리 ####-##-##",
+				fileName: `1. input formatter(Masking)<br />
+				2. 커스텀 file Dialog
+				`,
+				summary: "인풋태그 마스킹 처리 ####-##-## 등 폼요소 관련 기능",
 				tag: ["html", "javascript"],
-				linkBlank: 'samples/form_input_formatter.html',
+				linkBlank: 'samples/form.html',
 			},
 			{
 				type: 'Table',
