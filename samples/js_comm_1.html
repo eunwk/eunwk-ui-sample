@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로딩</title>
+    <link rel="stylesheet" href="../common.css" />
+</head>
+<style>
+    :root {
+        --areaScrollTopForLoading: 0px;
+    }
+
+    button {
+        position: relative;
+        z-index: 99;
+    }
+    .box {
+        border: 1px solid #ddd;
+        margin-top: 20px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        min-height: 200px;
+    }
+
+    .loading::before { 
+        content: ''; 
+        background: rgba(0, 0, 0, 0.05) url('/images/loading_area.svg') no-repeat center ; 
+        background-size: 64px; position: absolute; 
+        top: var(--areaScrollTopForLoading); 
+        height: 100%; 
+        left: 0; 
+        right: 0; 
+        z-index: 2;
+    }
+    table, .box { position: relative; } 
+</style>
+
+<body>
+    <div class="sample-container">
+        <div class="title-area">
+            <h2 class="section_title">영역별 로딩호출</h2>
+            <div class="extra-area">
+                <button type="button" class="btn" id="show-body-loading">전체창 로딩 호출</button>
+                <button type="button" class="btn" id="hide-body-loading">전체창 로딩 제거</button>
+                <button type="button" class="btn" id="show-table-loading">테이블 로딩 호출</button>
+                <button type="button" class="btn" id="hide-table-loading">테이블 로딩 제거</button>
+                <button type="button" class="btn" id="show-box-loading">컨텐츠 영역 로딩 호출</button>
+                <button type="button" class="btn" id="hide-box-loading">컨텐츠 영역 로딩 제거</button>
+            </div>
+           
+        </div>
+        <div style="">
+            <table>
+                <colgroup>
+                     <col  />
+                      <col />
+                      <col />
+                      <col />
+                </colgroup>
+                <thead>
+                    <tr>
+                      <th scope="col">순번</th>
+                      <th scope="col">타이틀1</th>
+                      <th scope="col">타이틀2</th>
+                      <th scope="col">타이틀3</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    <script>
+                        const tbody = document.querySelector("tbody");
+                        Array(10).fill('').forEach((item, index)=>{			
+                            const tr = document.createElement("tr");
+                            const tdContent = `
+                                <th scope="row">${index}</th>
+                                <td>일이삼</td>
+                                <td>일이삼</td>
+                                <td>일이삼</td>
+                            `;
+                            tr.innerHTML = tdContent;
+                            tbody.appendChild(tr);
+                        })
+                        
+                    </script>
+                </tbody>
+            </table>
+
+            <div class="box">
+                 컨텐츠 영역   
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script>
+    function CallLoading(scrollContainer) {
+        // console.log("call Loading", scrollContainer)
+        this.scrollContainer = scrollContainer;
+        this.areaScrollTopForLoading = 0;
+
+        // 로딩 영역에 스크롤이 있다면 로딩창 뜬 동안 스크롤 금지
+            this.stopMouseWheels = function (e) {
+            e.preventDefault();
+        }
+
+        // 인자로 받은 요소가 없으면 아무 것도 하지 않음.
+        if (!scrollContainer) return false;
+
+        this.showLoading = function () {
+            this.scrollContainer.classList.add("loading");
+            this.scrollContainer.addEventListener("wheel", this.stopMouseWheels);
+            this.areaScrollTopForLoading = this.scrollContainer.scrollTop
+            document.documentElement.style.setProperty('--areaScrollTopForLoading', `${this.areaScrollTopForLoading}px`);
+        }
+            this.hideLoading = function () {
+            this.scrollContainer.classList.remove("loading");
+            this.scrollContainer.removeEventListener("wheel", this.stopMouseWheels)
+        }
+    }
+
+    let body, table, box;
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        const body = new CallLoading(document.querySelector('body'));
+        const table = new CallLoading(document.querySelector('table'));
+        const box = new CallLoading(document.querySelector('.box'));
+
+        document.getElementById('show-body-loading').addEventListener('click', () => body.showLoading());
+        document.getElementById('hide-body-loading').addEventListener('click', () => body.hideLoading());
+        document.getElementById('show-table-loading').addEventListener('click', () => table.showLoading());
+        document.getElementById('hide-table-loading').addEventListener('click', () => table.hideLoading());
+        document.getElementById('show-box-loading').addEventListener('click', () => box.showLoading());
+        document.getElementById('hide-box-loading').addEventListener('click', () => box.hideLoading());
+    });
+
+   
+</script>
+
+</html>

@@ -45,14 +45,19 @@
 				linkBlank: 'samples/js_clock_1.html',
 			},
 			{
+				type: '공통',
+				fileName: 'loading',
+				summary: "여러 영역에 적용할 수 있는 로딩창",
+				tag: ["javascript"],
+				linkBlank: 'samples/js_comm_1.html',
+			},
+			{
 				type: 'Canvas',
 				fileName: '그림판만들기',
 				summary: "그림판 Canvas, Touch 이벤트에도 작동",
 				tag: ["Canvas"],
 				linkBlank: 'samples/js_paintBoard.html',
 			},
-			
-			
 			{
 				type: 'Modal',
 				fileName: '모달 1',
@@ -60,7 +65,13 @@
 				tag: ["javascript"],
 				linkBlank: 'samples/modal_1.html',
 			},
-
+			{
+				type: 'Modal',
+				fileName: '툴팁',
+				summary: "mouseover, click 용 툴팁",
+				tag: ["javascript"],
+				linkBlank: 'samples/modal_2.html',
+			},
 			{
 				type: '폼요소',
 				fileName: '캘린더 2',
@@ -83,6 +94,13 @@
 				summary: "drag 관련 이벤트. Table Row 이동",
 				tag: ["javascript"],
 				linkBlank: 'samples/table_drag.html',
+			},	
+			{
+				type: 'Table',
+				fileName: '행추가, 행삭제, 행이동',
+				summary: "행추가, 체크박스 선택 후 행삭제, 행이동",
+				tag: ["javascript"],
+				linkBlank: 'samples/table_02.html',
 			},	
 			{
 				type: 'Mobile',

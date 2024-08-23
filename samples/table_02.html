@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>행추가, 행삭제, 행이동</title>
+    <link rel="stylesheet" href="../common.css" />
+    <style>
+        html {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+        }
+        
+        input[type=number] {
+            width: 100%;
+            border: 0;
+            background: transparent;
+            text-align: center;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .bg-blue th, .bg-blue td, .bg-blue { background-color: #d5e5ff; }
+        .bg-green th, .bg-green td, .bg-green { background-color: #dbffdb; }
+    </style>
+</head>
+
+<body>
+    <div style="width: 600px;">
+        <div class="title-area">
+            <h2 class="section_title">행추가, 행삭제, 행이동</h2>
+                <div class="extra-area">
+                <button type="button" class="btn" onclick="onClickAddRow()">행 추가</button>
+                <button type="button" class="btn" onclick="onClickDelRow()">행 삭제</button>
+                
+            </div>
+        </div>
+  
+        <table>
+            <colgroup>
+                 <col style="width: 12%" />
+                  <col style="width: 22%"/>
+                  <col style="width: 22%"/>
+                  <col style="width: 22%"/>
+                  <col style="width: 22%"/>
+            </colgroup>
+            <thead>
+                <tr>
+                  <th scope="col">선택</th>
+                  <th scope="col">기존 단</th>
+                  <th scope="col">변경 단</th>
+                  <th scope="col">기존 열</th>
+                  <th scope="col">변경 열</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <!-- body 동적 생성 -->
+            </tbody>
+        </table>
+        <div class="button-area">
+            <button type="button" class="btn" onclick="onClickMoveRows('up')">위로</button>
+            <button type="button" class="btn" onclick="onClickMoveRows('down')">아래로</button>
+            <button type="button" class="btn" onclick="conClickColNumAdjust(1)"><span class="fc-red">+1</span> 열증가</button>
+            <button type="button" class="btn" onclick="conClickColNumAdjust(-1)"><span class="fc-blue">-1</span> 열증감</button>
+       </div>
+    </div>
+
+    <script>
+        const tbody = document.querySelector("#tbody");
+      let data = [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8]]; // 원본 단, 열 정보
+      let changeData = [...data]; // 변경될 단, 열 정보
+      let selectRows = []; // 체크박스 선택된 Row의 id를 담을 배열
+      let firstLoad = true; // table tr 생성이 최초인지, 추가인지 구분, 추가될 경우 기존단과 값 비교해서 tr 또는 td에 클래스 추가
+      let checkboxKey = 1; // 선택된 체크박스의 고유아이디를 selectRows에 담기위해 추가. 신규 Row 생성 시마다 1씩 증가.
+
+
+      /* Row 생성 (params: value [단, 열], index) */
+      function createRow(value = [], index) {
+        const tr = document.createElement('tr');
+        if(!firstLoad) {
+          tr.classList.add("bg-blue"); // 추가된 row 색상 변경을 위한 클래스 추가
+        }
+        // tr.dataset.rowIndex = index;
+        tr.innerHTML = `
+            <th scope="row">
+              <label class="checkbox"><input type="checkbox" name="chk" id="chk-${checkboxKey}" onchange="updateSelectRow(event)" data-row-index="${index}" /><span class="label noTxt"></span></label>
+            </th>
+            <td><input type="number" value="${firstLoad ? value[0] : ''}" disabled placeholder="-"/></td>
+            <td><input type="number" value="${index + 1}" disabled data-role="current-row"/></td>
+            <td><input type="number" value="${value[1]}" disabled data-role="origin-column"/></td>
+            <td><input type="number" value="${changeData[index][1]}" disabled data-role="current-column"/></td>
+        `;
+
+        checkboxKey ++;
+        tbody.appendChild(tr) ;
+      }
+
+
+      /* 최초 테이블 생성 */
+      function createTableBody() {
+        for(let i = 0; i < data.length; i++) {
+          createRow(changeData[i], i)
+        }
+        firstLoad = false;
+      }
+
+      /* 선택된 체크박스 id를  selectRows에 추가 또는 제거 */
+      function updateSelectRow(event) {
+        const checkbox = event.target;
+
+        if(checkbox.checked) {
+          selectRows = [...selectRows, checkbox.id]
+        } else {
+          selectRows = selectRows.filter(value => value !== checkbox.id);
+        }
+        // console.log("selectRows, ", selectRows)
+      }
+
+      /* 선택된 행이 있는지 체크 - 없을 경우 alert 출력 */
+      function checkIsSelectRow() {
+        // 선택된 행이 없을 경우
+        if(!selectRows.length) {
+          alert("선택된 행이 없습니다.");
+          return false;
+        }
+        return true
+      }
+
+      /* 행추가 */
+      function onClickAddRow() {
+        const col = 0; // 단 생성 시 열 기본값 (임의로 0을 넣어둠.)
+        changeData.push([changeData.length + 1 , col]); // changeData 배열의 마지막에 값을 넣어준다. [기존 단 보다 + 1, 임의의 단 값]
+        createRow([changeData.length, col], changeData.length -1);
+        console.log("changeData", changeData)
+      }
+
+      /* 행삭제 */
+      function onClickDelRow() {
+       if(!checkIsSelectRow()) return; // 선택된 행이 없을 경우 return
+
+       if(confirm("삭제 시 배치되어 있는 보존상자의 위치 정보가 사라질 수 있습니다. 삭제하시겠습니까?")) {
+
+         selectRows.forEach(id => {
+           const checkbox = document.getElementById(id);
+           const rowIndex = checkbox.dataset.rowIndex * 1; // 체크박스 선택된 행들의 현재 row-index를 가져온다.
+
+           changeData.splice(rowIndex, 1); // data 의 삭제된 요소와 같은 위치의 요소를 삭제
+           checkbox.closest('tr').remove(); // tr 삭제
+           selectRows = selectRows.filter(value => value !== id); // selectRows 에서 삭제된 목록 삭제
+
+           // changeData 변경 단의 [0] 번째 값을 1부터 다시 정렬
+           changeData.map((value, index) => {
+             value[0] = index + 1;
+           })
+
+           // table에서 '변경 단' 의 숫자 업데이트
+           const trList = tbody.querySelectorAll('tr');
+
+           trList.forEach((tr, index) => {
+             const input = tr.querySelector('[data-role=current-row]');
+             const chk = tr.querySelector('input[type=checkbox]');
+             chk.dataset.rowIndex = index + "";
+             // console.log("input", input, index)
+             input.value = index + 1;
+           })
+
+           console.log("rowIndex", rowIndex, changeData);
+         })
+       }
+
+      }
+
+      /* 열의 숫자 증감 */
+      function conClickColNumAdjust(num) {
+        if(!checkIsSelectRow()) return; // 선택된 행이 없을 경우 return
+
+        selectRows.forEach(id => {
+          // 선택된 Row를 순회하며, rowIndex를 가져온다.
+          const checkbox = document.getElementById(id);
+          const rowIndex = checkbox.dataset.rowIndex * 1;
+          const prevColValue = checkbox.closest("tr").querySelector("[data-role=origin-column]").value; // 기존 열의 값을 변수에 담음.
+          let currentColValue;
+
+          // 데이터 숫자 +1, 또는 -1
+          if(changeData[rowIndex][1] === 0 && num === -1) {
+            return; // 0 이하 금지. 위로는 제한 없음.
+          }
+          changeData[rowIndex][1] = changeData[rowIndex][1] + num; // +1 또는 -1
+
+          checkbox.closest("tr").querySelector("[data-role=current-column]").value = changeData[rowIndex][1]; // 변경된 열의 값을 DOM에 적용
+          currentColValue = checkbox.closest("tr").querySelector("[data-role=current-column]").value;  // 현재 값을 변수에 담음. 뒤에서 prevColValue 와 비교
+
+          // 기존열의 값과 변경열의 값이 다르면 bg 적용. 같을 경우 해제
+          if(prevColValue !== currentColValue) {
+            checkbox.closest("tr").querySelector("[data-role=origin-column]").closest("td").classList.add("bg-green");
+            checkbox.closest("tr").querySelector("[data-role=current-column]").closest("td").classList.add("bg-green");
+          } else {
+            checkbox.closest("tr").querySelector("[data-role=origin-column]").closest("td").classList.remove("bg-green");
+            checkbox.closest("tr").querySelector("[data-role=current-column]").closest("td").classList.remove("bg-green");
+          }
+          console.log("changeData", changeData);
+        });
+      }
+
+      /* 행 이동 */
+      function onClickMoveRows(direction = "up") {
+        if(!checkIsSelectRow()) return; // 선택된 행이 없을 경우 return
+
+        // 윗줄 혹은 아랫줄 부터 for문을 돌기 위해 정렬 (문자열을 떼어내고 숫자비교)
+        if (direction === "up") {
+          selectRows.sort((a, b) => {
+            const aIndex = parseInt(a.replace('chk-', ''), 10);
+            const bIndex = parseInt(b.replace('chk-', ''), 10);
+            return aIndex - bIndex;
+          });
+        } else {
+          selectRows.sort((a, b) => {
+            const aIndex = parseInt(a.replace('chk-', ''), 10);
+            const bIndex = parseInt(b.replace('chk-', ''), 10);
+            return bIndex - aIndex;
+          });
+        }
+
+        for (const id of selectRows) {
+          // 선택된 Row를 순회하며, rowIndex를 가져온다.
+          const checkbox = document.getElementById(id);
+          const rowIndex = checkbox.dataset.rowIndex * 1;
+
+          // 위로 이동이면 인덱스 감소, 아래로 이동이면 인덱스 증가
+          const newIndex = direction === 'up' ? rowIndex -1 : rowIndex +1;
+
+          // 범위 확인
+          if (newIndex < 0 || newIndex >= changeData.length) {
+            alert("더이상 이동 할 수 없습니다.")
+            break;
+          }
+
+          // changeData 배열에서 데이터 위치 변경
+          const selectedData = changeData[rowIndex];
+          changeData.splice(rowIndex, 1);  // 기존 위치에서 데이터 제거
+          changeData.splice(newIndex, 0, selectedData);  // 새 위치에 데이터 삽입
+
+          // DOM에서 행 이동
+          const rows = tbody.querySelectorAll("tr");
+          const rowToMove = rows[rowIndex]; // 이동할 row
+          const referenceRow = rows[newIndex]; // 기준 row
+
+          // 위로 이동할 때
+          if (direction === "up") {
+            tbody.insertBefore(rowToMove, referenceRow);
+          } else { // 아래로 이동할 때
+            if (referenceRow.nextElementSibling) {
+              tbody.insertBefore(rowToMove, referenceRow.nextElementSibling);
+            } else {
+              tbody.appendChild(rowToMove);
+            }
+          }
+
+          changeData.map((value, index) => {
+            value[0] = index + 1;  // 변경 단의 [0] 번째 값을 1부터 다시 정렬
+          })
+
+          // table에서 '변경 단' 의 숫자 업데이트
+          const trList = tbody.querySelectorAll('tr'); // row 이동 뒤 tr 순서 다시 받아 옴
+          trList.forEach((tr, index) => {
+            const input = tr.querySelector('[data-role=current-row]');
+            const chk = tr.querySelector('input[type=checkbox]');
+            chk.dataset.rowIndex = index + "";
+            input.value = index + 1;
+          })
+
+          console.log("changeData", changeData);
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        createTableBody();
+      });
+    </script>
+</body>
+
+</html>

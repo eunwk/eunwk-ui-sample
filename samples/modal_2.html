@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>툴팁</title>
+    <link rel="stylesheet" href="../common.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .sample-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        /**** 도움말 툴팁 ****/
+    
+        button:focus-visible {
+            outline:2px dotted #70b6ff;
+            outline-offset: 2px !important;
+        }
+        .help-tooltip { z-index: 1; position: fixed; left: 200px; top: 200px; border-radius: 12px; border: 1px solid #ededed; background: #fff; font-size: 14px; box-shadow: -1px 3px 10px rgba(0, 0, 0, 0.15); padding: 12px 16px; display: none; }
+        .help-tooltip::before { content: ''; width: 10px; height: 10px; position: absolute; background: #fff; border-left: 1px solid #ededed; border-top: 1px solid #ededed; }
+        .help-tooltip.right::before { left: -6px; top: 50%; transform: translateY(-50%) rotate(-45deg); }
+        .help-tooltip.left::before { right: -6px; top: 50%; transform: translateY(-50%) rotate(135deg); }
+        .help-tooltip.left button.ico-tooltip-close { right: auto; left: -6px; }
+        .help-tooltip.top::before { left: 50%; bottom: -6px; transform: rotate(-135deg); }
+        .help-tooltip.bottom::before { left: 50%; top: -6px; transform: rotate(45deg); }
+        .help-tooltip.on { display: block; }
+        .help-tooltip.right { animation: rightTooltip ease-in-out 0.3s forwards; }
+        .help-tooltip.top { animation: topTooltip ease-in-out 0.3s forwards; }
+        .help-tooltip.bottom { animation: bottomTooltip ease-in-out 0.3s forwards; }
+        .help-tooltip.left { animation: leftTooltip ease-in-out 0.3s forwards; }
+        .help-tooltip .help-text { white-space: normal; color: #777; }
+        button.ico-tooltip-close { width:18px !important; height:18px  !important; background-image: url(/images/ico_close.png); background-color: #c0c0c0; background-repeat: no-repeat; background-position: center;
+             border-radius: 8px; background-size: 12px; position: absolute; right: -6px; top: -6px;
+             border: 0;
+        }
+        button.ico-tooltip-close:hover { background-color: #63b4ff; }
+
+        /* 버튼 사이즈에 따라 세부 위치 조정 필요 */
+        @keyframes rightTooltip {
+            0% { transform: translateX(60px) translateY(calc(-50% + 10px)); opacity: 0; }
+            100% { transform: translateX(60px) translateY(-50%); opacity: 1; }
+        }
+
+        @keyframes leftTooltip {
+            0% { transform: translateX(calc(-100% - 50px)) translateY(calc(-50% + 10px)); opacity: 0; }
+            100% { transform: translateX(calc(-100% - 50px)) translateY(-50%); opacity: 1; }
+        }
+
+        @keyframes topTooltip {
+            0% { transform: translateX(-50%) translateY(calc(-100% - 15px)); opacity: 0; }
+            100% { transform: translateX(-50%) translateY(calc(-100% - 25px)); opacity: 1; }
+        }
+
+        @keyframes bottomTooltip {
+            0% { transform: translateX(-50%) translateY(30px); opacity: 0; }
+            100% { transform: translateX(-50%) translateY(20px); opacity: 1; }
+        }
+
+
+        
+    </style>
+</head>
+
+<body>
+    <div class="sample-container">
+        <!-- 툴팁 있는 도움말: id 필수, 보여줄 툴팁 .help-tooltip 을 버튼 다음에 배치 -->
+        <button type="button" class="btn" id="tooltip1">Mouseover - Top</button> <!-- 텍스트는 상황에 따라 변경 가능 -->
+        <div class="help-tooltip" role="tooltip">
+            <div class="help-text">도움말 텍스트를 출력합니다.</div>
+        </div>
+
+        <button type="button" class="btn" id="tooltip2">Mouseover - Bottom</button> <!-- 텍스트는 상황에 따라 변경 가능 -->
+        <div class="help-tooltip" role="tooltip">
+            <div class="help-text">도움말 텍스트를 출력합니다.</div>
+        </div>
+
+        <button type="button" class="btn" id="tooltip3">Click - Top</button> <!-- 텍스트는 상황에 따라 변경 가능 -->
+        <div class="help-tooltip">
+            <button class="ico-tooltip-close"><span class="hidden">닫기</span></button>
+            <div class="help-text">Position Top<br />Position Top</div>
+        </div>
+
+        <button type="button" class="btn" id="tooltip4">Click - Bottom</button> <!-- 텍스트는 상황에 따라 변경 가능 -->
+        <div class="help-tooltip">
+          <button class="ico-tooltip-close"><span class="hidden">닫기</span></button>
+          <div class="help-text">Position Bottom</div>
+        </div>
+
+        <button type="button" class="btn" id="tooltip5">Click - Left</button> <!-- 텍스트는 상황에 따라 변경 가능 -->
+        <div class="help-tooltip">
+          <button class="ico-tooltip-close"><span class="hidden">닫기</span></button>
+          <div class="help-text">Position Left</div>
+        </div>
+
+        <button type="button" class="btn" id="tooltip6">Click - Right</button> <!-- 텍스트는 상황에 따라 변경 가능 -->
+        <div class="help-tooltip">
+          <button class="ico-tooltip-close"><span class="hidden">닫기</span></button>
+          <div class="help-text">Position Right</div>
+        </div>
+    </div>
+       
+
+    <script>
+    /**
+     * Tooltip: 툴팁 호출 함수
+     * TODO: 2024/06/26
+     * event: mouseover, click
+     * position: top, right, bottom, left (툴팁 위치)
+    */
+    function Tooltip(btnElemID, event = "hover", position = "top") {
+    this.btn = document.querySelector(btnElemID);
+    console.log("this.btn", this.btn)
+    this.tooltip = this.btn.nextElementSibling;
+    this.event = event;
+    this.position = position;
+    this.closeBtn = this.tooltip.querySelector('.ico-tooltip-close');
+
+    // 요소가 없으면 리턴
+    if (!this.btn || !this.tooltip.classList.contains('help-tooltip')) return;
+
+    // 접근성 초기 셋팅
+    this.btn.setAttribute("aria-expanded", false);
+    this.tooltip.id = this.btn.id + "-content";
+    this.btn.setAttribute("aria-describedby", this.tooltip.id);
+
+    // 툴팁 Show
+    this.showTooltip = function () {
+      const rect = this.btn.getBoundingClientRect();
+      const x = rect.left + rect.width / 2 - 5;
+      const y = rect.top + rect.height / 2;
+      console.log("xy", x, y)
+      this.btn.setAttribute("aria-expanded", true);
+      this.tooltip.style.left = x + 'px';
+      this.tooltip.style.top = y + 'px';
+      this.tooltip.classList.add("on", this.position);
+    };
+
+    // 툴팁 Hide
+    this.hideTooltip = function () {
+      this.tooltip.classList.remove("on", this.position);
+      this.btn.setAttribute("aria-expanded", false);
+    };
+
+    // 이벤트 정의
+    this.bindEvents = function () {
+      // 파라미터로 넘어온 이벤트 실행 시 Show Tooltip
+      this.btn.addEventListener(this.event, (e) => {
+        this.showTooltip(e);
+      });
+
+      // mouseover 로 실행 될 경우 추가 이벤트
+      if (this.event === "mouseover") {
+        this.btn.addEventListener("mouseleave", () => this.hideTooltip());
+        this.btn.addEventListener("focus", () => this.showTooltip());
+        this.btn.addEventListener("blur", () => this.hideTooltip());
+      }
+
+      // click 으로 실행 될 경우 추가 이벤트
+      if (this.event === "click") {
+        this.btn.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            this.showTooltip();
+          }
+        });
+        // close 버튼이 있을 경우 이벤트 추가
+        this.closeBtn?.addEventListener("click", () => this.hideTooltip());
+      }
+
+      // 다른 영역에 포커스가 갔을 때 툴팁 닫기
+      document.addEventListener("focusin", (e) => {
+        if (!this.btn.contains(e.target) && !this.tooltip.contains(e.target)) {
+          this.hideTooltip();
+        }
+      });
+      // 다른 영역이 클릭 되었을때 툴팁 닫기
+      document.addEventListener("click", (e) => {
+        if (!this.btn.contains(e.target) && !this.tooltip.contains(e.target)) {
+          this.hideTooltip();
+        }
+      });
+    };
+    this.bindEvents();
+  }
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // 툴팁 적용 (params: 버튼id(필수), 이벤트(기본값 mouseover), 위치(기본값 top))
+        new Tooltip('#tooltip1', "mouseover", "top");
+        new Tooltip('#tooltip2', "mouseover", "bottom");
+        new Tooltip('#tooltip3', "click", "top");
+        new Tooltip('#tooltip4', "click", "bottom");
+        new Tooltip('#tooltip5', "click", "left");
+        new Tooltip('#tooltip6', "click", "right");
+    });
+    </script>
+</body>
+
+</html>
