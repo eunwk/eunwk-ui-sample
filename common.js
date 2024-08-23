@@ -103,6 +103,20 @@
 				linkBlank: 'samples/table_02.html',
 			},	
 			{
+				type: '이미지 갤러리',
+				fileName: '썸네일 클릭 시, 오픈 팝업',
+				summary: "썸네일 클릭 시, 상세팝업이 열리는 이미지 갤러리 + 인피니티 스크롤 적용",
+				tag: ["javascript"],
+				linkBlank: 'samples/js_img_gallary_1.html',
+			},	
+			{
+				type: '이미지 갤러리',
+				fileName: '리스트 클릭시, 우측에 상세 열림',
+				summary: "이미지 회전, 줌/아웃, 드래그 가능",
+				tag: ["javascript"],
+				linkBlank: 'samples/js_img_gallary_2.html',
+			},	
+			{
 				type: 'Mobile',
 				fileName: '키패드올라올때 input 딸려 올라가기',
 				summary: "키패드올라올때 input 딸려 올라가기 (모바일에서 확인해야 함)",

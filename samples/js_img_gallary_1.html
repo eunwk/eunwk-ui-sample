@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>이미지 갤러리 - 썸네일 클릭 시, 오픈 팝업</title>
+        <link rel="stylesheet" href="../common.css" />
+    </head>
+    <style>
+        :root {
+            --areaScrollTopForLoading: 0px;
+        }
+
+        .loading::before { 
+            content: ''; 
+            background: rgba(0, 0, 0, 0.5) url('/images/loading_area.svg') no-repeat center ; 
+            background-size: 64px; 
+            position: fixed; 
+            top: var(--areaScrollTopForLoading); 
+            height: 100%; 
+            left: 0; 
+            right: 0; 
+            z-index: 2;
+        }
+
+        /**** .img-full-view 이미지 갤러리 ****/
+        .img-full-view { position: absolute; width: 100%; height: 100vh;  top: 0; z-index: 999; box-sizing: border-box; display: flex; flex-direction: column; overflow: auto; background: rgba(0, 0, 0, 0.7); padding: 50px 40px; }
+        .img-full-view .title { margin: 0 0 16px; font-size: 28px; color: #fff; font-weight: 400; display: flex; align-items: center; box-sizing: border-box; gap: 10px; 
+            padding: 0 50px 0 40px;}
+            .img-thumbnail-list {
+                width: 1720px;
+            }
+        .img-thumbnail-list, .img-thumbnail-list li { list-style: none; margin: 0; padding: 0; }
+        .img-thumbnail-list { display: flex; flex-wrap: wrap; gap: 46px 20px; color: #fff; list-style: none; padding: 0 20px }
+        .img-thumbnail-list li { width: 256px;overflow: hidden; padding: 8px; box-sizing: border-box; border-radius: 8px; transition: 0.4s background, 0.4s box-shadow; }
+        .img-thumbnail-list li:hover,
+        .img-thumbnail-list li:focus-within { background: rgba(0, 0, 0, 0.2); }
+        .img-thumbnail-list .btn-img-open { display: block; background: transparent; padding: 0; color: #fff; width: 100%; text-align: left; border: 0; }
+        .img-thumbnail-list .img-thumb { width: 100%; height: 170px; margin-bottom: 12px; display: block; border-radius: 8px; overflow: hidden; }
+        .img-thumbnail-list .img-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .img-thumbnail-list .img-name { font-weight: 200; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; }
+        button.ico-fullview-close { width:60px !important; height:60px  !important; background: rgba(255, 255, 255, 0.1) url(/images/ico_close_80.png) no-repeat center; outline-offset: 2px !important; background-size: 40px; position: fixed; right: 40px; top: 20px; border-radius: 50%; }
+        button.ico-fullview-close:hover { background-color: rgba(255, 255, 255, 0.2); }
+        .img-popup { position: fixed; left: 50%; top: 200%; transform: translate(-50%, -50%); height: 820px; border-radius: 30px; padding: 20px; box-sizing: border-box; opacity: 0; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border: 2px solid #5f5f5f; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(1px); }
+        .img-popup[data-img-direction="landscape"] { width: 1200px; }
+        .img-popup[data-img-direction="portrait"] { width: 580px; }
+        .img-popup img { width: 100%; height: 100%; object-fit: contain; margin-bottom: 12px; }
+        .img-popup button.ico-fullview-close { right: -20px; top: -20px; }
+        .img-popup.on { animation: openImgPopup 0.4s forwards; }
+
+        @keyframes openImgPopup {
+            0% { top: 200%; opacity: 0; }
+            30% { top: 60%; opacity: 0; }
+            100% { top: 50%; opacity: 1; }
+        }
+    </style>
+
+    <body>
+        <section class="img-full-view">
+            <h1 class="title">이미지 갤러리</h1>
+    
+            <ul class="img-thumbnail-list">
+            <!-- 동적으로 li 생성-->
+            </ul>
+    
+    
+        <div class="img-popup" aria-hidden="true">
+            <h2 class="hidden">사진 확대</h2>
+            <img src="/images/sample1.jpg" class="img-large" alt="" title=""/>
+            <button class="b1 ico-fullview-close" onClick="closePopup()"><span class="hidden">닫기</span></button>
+        </div>
+    
+        </section> <!-- // .img-full-view -->
+    </body>
+
+    <script>
+    const imgPopup = document.querySelector('.img-popup');
+    const imgLarge = document.querySelector('.img-large');
+    const btnPopupClose = document.querySelector('.ico-fullview-close');
+    let isOpenPopup;
+    let openTargetButton;
+
+    /**
+     * 로딩
+     **/
+    function CallLoading(scrollContainer) {
+            // console.log("call Loading", scrollContainer)
+            this.scrollContainer = scrollContainer;
+            this.areaScrollTopForLoading = 0;
+
+            // 로딩 영역에 스크롤이 있다면 로딩창 뜬 동안 스크롤 금지
+                this.stopMouseWheels = function (e) {
+                e.preventDefault();
+            }
+
+            // 인자로 받은 요소가 없으면 아무 것도 하지 않음.
+            if (!scrollContainer) return false;
+
+            this.showLoading = function () {
+                this.scrollContainer.classList.add("loading");
+                this.scrollContainer.addEventListener("wheel", this.stopMouseWheels);
+                this.areaScrollTopForLoading = this.scrollContainer.scrollTop
+                document.documentElement.style.setProperty('--areaScrollTopForLoading', `${this.areaScrollTopForLoading}px`);
+            }
+                this.hideLoading = function () {
+                this.scrollContainer.classList.remove("loading");
+                this.scrollContainer.removeEventListener("wheel", this.stopMouseWheels)
+            }
+        }
+
+
+    /**
+     * 이미지 클릭 시 팝업 레이어 호출
+     **/
+    function preventPopupFocusOut(event) {
+        // 키보드 접근성을 위해, 팝업이 열렸을 때 focus를 팝업 안에 가둠.
+        console.log("event.key", event.key)
+        if((event.key === 'Tab')) event.preventDefault();
+    }
+    function closePopup() {
+        imgPopup.classList.remove("on");
+        imgPopup.removeAttribute('data-img-direction');
+        btnPopupClose.removeEventListener("keydown", preventPopupFocusOut);
+
+        // 팝업이 닫힐 때 팝업을 호출했던 버튼으로 포커스 되돌림
+        if (openTargetButton) {
+            openTargetButton.focus();
+        }
+
+        isOpenPopup = false;
+    }
+    function openPopup(event){
+        if(isOpenPopup) return;
+        const btn = event.currentTarget;
+        const img = btn.querySelector('.img-thumb img');
+
+        // 팝업이 닫힐 때 팝업을 호출했던 버튼으로 포커스 되돌리기 위해 요소 저장.
+        openTargetButton = btn;
+
+        // 클릭한 버튼에서 이미지 정보를 받아 popup 이미지 변경.
+        imgLarge.src = img.src;
+        imgPopup.classList.add("on");
+
+        // 팝업 사이즈 지정을 위해 landscape 또는 portrait 속성 추가
+        let IsLandscape = img.naturalWidth > img.naturalHeight;
+        imgPopup.setAttribute('data-img-direction', IsLandscape ? 'landscape' : 'portrait');
+
+        // 팝업이 열리면 팝업 내부 버튼으로 포커스 이동 + 팝업 내부에 포커스 가둠
+        btnPopupClose.focus();
+        btnPopupClose.addEventListener("keydown", preventPopupFocusOut);
+        isOpenPopup = true;
+    }
+
+
+
+    /**************************************
+        * 이미지 리스트 목록 추가. 인피니티 스크롤
+    ***************************************/
+
+    let dataListAll = []; // 전체 데이터 담길 변수
+    let slicedList = []; // 전체 데이터에서 뿌려질 데이터 만큼 씩만 잘라옴.
+    const listContainer = document.querySelector('.img-thumbnail-list'); // ul
+    const scrollZone = document.querySelector(".img-full-view"); // 스크롤이 생성되는 컨테이너
+    const loadableZone = 50; // 추가 데이터 load를 위한 스크롤 범위
+    let isLoading = false; // 데이터 로딩 중인지 체크.(스크롤 내내 로드하지 않도록)
+    const loading = new CallLoading(listContainer);
+
+    // 더미 데이터 생성
+    function createListData () {
+        let imgNum = 0;
+        dataListAll = Array(90).fill(null).map((value, index)=> {
+        imgNum = imgNum > 3 ? 1 : imgNum +1 ; // 이미지 번호 1~4사이 반복
+        return {title: `파일 입니다. ${index}`, imgUrl:`/images/sample${imgNum}.jpg`}
+        });
+    }
+
+    // ul에 li 동적 추가
+    function appendList(callCount) {
+        slicedList = dataListAll.splice(0, callCount);
+        let listElems = '';
+
+        slicedList.forEach(item => {
+        listElems += `<li>
+                    <button class="btn-img-open" onclick="openPopup(event)">
+                    <span class="img-thumb"><img src="${item.imgUrl}" alt="" title="${item.title}"/></span>
+                    <span class="img-name">${item.title}</span>
+                    </button>
+                </li>`
+        });
+
+        const range = document.createRange();
+        const documentFragment = range.createContextualFragment(listElems);
+        listContainer.appendChild(documentFragment) ;
+        isLoading = false;
+    }
+
+    function loadMoreData(callCount = 24) {
+        if(!dataListAll.length) return; // 가져올 데이터가 없을 경우 실행하지 않음.
+        isLoading = true;
+
+        // 로딩을 보여준다.
+        loading.showLoading();
+        setTimeout(()=>{
+        loading.hideLoading();
+        setTimeout(()=>{
+            appendList(callCount); // 로딩이 사라진 뒤 list add
+        }, 100);
+        }, 2000);
+    }
+
+    scrollZone.addEventListener('scroll', function () {
+        if(scrollZone.scrollHeight - scrollZone.clientHeight - scrollZone.scrollTop < loadableZone && !isLoading) {
+        loadMoreData(24); /* 스크롤시에는 4줄씩 호출*/
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        createListData();
+        loadMoreData(36); /* 6*6 = 36 처음에는 6줄 호출 */
+    });
+    
+    </script>
+
+</html>
