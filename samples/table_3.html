@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>좌측 컬럼 고정</title>
+    <link rel="stylesheet" href="../common.css" />
+    <style>
+        html {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+        }
+
+        .table-container {
+          overflow: auto;
+          border: 1px solid #ddd;
+          background: #f1f1f1;
+        }
+
+        
+        .table-container thead tr {
+          position: sticky;
+          top: 0;
+          z-index: 9;
+         
+        }
+        
+        table {
+          table-layout:fixed;
+          border-collapse:separate;
+          border-spacing:0;
+          border-left: 0;
+          border-top: 0;
+          background: #fff;
+          
+        }
+
+        .table-container thead th, 
+        .table-container thead td {
+          background: #f1f1f1;
+        }
+
+        /* 그리드 컬럼 고정 sticky */
+        table .sticky {
+            position: sticky !important;
+            left: 0;
+            background: #fff;
+            z-index:2;
+        }
+
+        table .sticky.sticky-last {
+            box-shadow: 2px 0 2px rgba(0,0,0,0.15);
+        }
+
+        table thead .sticky {
+            z-index: 2 !important;
+        }
+
+        table tbody .sticky {
+            z-index: 1;
+        }
+
+
+ 
+    </style>
+</head>
+
+<body>
+    <div style="max-width: 1200px;">
+        <div class="title-area">
+            <h2 class="section_title">좌측 컬럼 고정</h2>
+        </div>
+
+        <div class="table-container">
+          <table id="fixedGrid">
+              <colgroup>
+                  <col style="width: 60px" />
+                    <col style="width: 200px"/>
+                    <col style="width: 200px"/>
+                    <col style="width: 500px"/>
+                    <col style="width: 300px"/>
+                    <col style="width: 300px"/>
+                    <col style="width: 300px"/>
+              </colgroup>
+              <thead>
+                  <tr>
+                    <th scope="col">선택</th>
+                    <th scope="col">타이틀</th>
+                    <th scope="col">타이틀</th>
+                    <th scope="col">타이틀</th>
+                    <th scope="col">타이틀</th>
+                    <th scope="col">타이틀</th>
+                    <th scope="col">타이틀</th>
+                  </tr>
+              </thead>
+              <tbody id="tbody">
+                <script>
+                  const tbody = document.querySelector("tbody");
+                  Array(10).fill('').forEach((item, index)=>{			
+                      const tr = document.createElement("tr");
+                      const tdContent = `
+                          <th scope="row">${index}</th>
+                          <td>일이삼</td>
+                          <td>일이삼</td>
+                          <td>일이삼</td>
+                          <td>일이삼</td>
+                          <td>일이삼</td>
+                          <td>일이삼</td>
+                      `;
+                      tr.innerHTML = tdContent;
+                      tbody.appendChild(tr);
+                  })
+                  
+                </script>
+              </tbody>
+          </table>
+        </div>
+
+        <br />
+        <br />
+        <br />
+      <div class="title-area ">
+          <h2 class="section_title">좌우, 상하 스크롤 발생 시</h2>
+      </div>
+        <div class="table-container" style="height: 300px;">
+          <table id="fixedGrid2">
+              <colgroup>
+                  <col style="width: 60px" />
+                    <col style="width: 200px"/>
+                    <col style="width: 200px"/>
+                    <col style="width: 500px"/>
+                    <col style="width: 300px"/>
+                    <col style="width: 300px"/>
+                    <col style="width: 300px"/>
+              </colgroup>
+              <thead>
+                  <tr>
+                    <th scope="col">선택</th>
+                    <th scope="col">타이틀</th>
+                    <th scope="col">타이틀</th>
+                    <th scope="col">타이틀</th>
+                    <th scope="col">타이틀</th>
+                    <th scope="col">타이틀</th>
+                    <th scope="col">타이틀</th>
+                  </tr>
+              </thead>
+              <tbody id="tbody2">
+                <script>
+                  const tbody2 = document.querySelector("#tbody2");
+                  
+                  Array(20).fill('').forEach((item, index)=>{			
+                      const tr = document.createElement("tr");
+                      const tdContent = `
+                          <th scope="row">${index}</th>
+                          <td>일이삼</td>
+                          <td>일이삼</td>
+                          <td>일이삼</td>
+                          <td>일이삼</td>
+                          <td>일이삼</td>
+                          <td>일이삼</td>
+                      `;
+                      tr.innerHTML = tdContent;
+                      tbody2.appendChild(tr);
+                  })
+                  
+                </script>
+              </tbody>
+          </table>
+        </div>
+    </div>
+
+    <script>
+      /**
+       * Grid: 그리드 기능 함수
+       * TODO: 2024/08/13
+       * selector : table을 selector로 넣어줌.
+       * fixedColLength: 가로스크롤 발생 시 컬럼 고정 갯수
+       */
+       function Grid(selector) {
+        this.grid = document.querySelector(selector);
+        this.theadRows = this.grid.querySelector('thead').rows;
+        this.tbodyRows =  this.grid.querySelector('tbody').rows;
+
+        // 컬럼 고정 sticky
+        // fixedColLength: 고정할 컬럼 수
+        this.fixed = (fixedColLength = 0) => {
+          // th 또는 td 에 sticky 클래스 붙임 + sticky 될 left 위치 지정
+          const loopRows = (rows) => {
+            let leftPositions = [];
+            Array.from(rows).forEach((tr)=>{
+              let left = 0;
+              for (let i = 0; i < fixedColLength; i++) {
+                if (tr.cells[i]) { // 해당 인덱스의 td가 존재할 경우에만
+                  tr.cells[i].classList.add('sticky');
+                  if(i === fixedColLength -1) {
+                    tr.cells[i].classList.add('sticky-last');
+                  }
+                  tr.cells[i].style.left = `${left}px`;
+
+                  left += tr.cells[i].offsetWidth;
+                  leftPositions[i] = left;
+                }
+              }
+            })
+          }
+          loopRows(this.theadRows);
+          loopRows(this.tbodyRows);
+        }
+      }
+
+    let initPage = function (){
+     const grid1 = new Grid("#fixedGrid");
+     const grid2 = new Grid("#fixedGrid2");
+      grid1.fixed(3);
+      grid2.fixed(2);
+    }
+
+    document.addEventListener("DOMContentLoaded", initPage);
+    </script>
+</body>
+
+</html>

@@ -100,7 +100,14 @@
 				fileName: '행추가, 행삭제, 행이동',
 				summary: "행추가, 체크박스 선택 후 행삭제, 행이동",
 				tag: ["javascript"],
-				linkBlank: 'samples/table_02.html',
+				linkBlank: 'samples/table_2.html',
+			},	
+			{
+				type: 'Table',
+				fileName: '좌측 컬럼 고정',
+				summary: "",
+				tag: ["javascript"],
+				linkBlank: 'samples/table_3.html',
 			},	
 			{
 				type: '이미지 갤러리',
