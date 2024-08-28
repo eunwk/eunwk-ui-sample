@@ -9,16 +9,297 @@
     <link rel="stylesheet" href="../common.css" />
 </head>
 <style>
+        html {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
 
+        body {
+            min-width: 1280px;
+            overflow: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            min-height: 100vh;
+            background: #f1f1f1;
+           
+        }
+
+        .sidebar {
+            background: #fff;
+            width: 300px;
+            padding: 20px;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .content-body {
+            flex: 1 1 auto;
+            position: relative;
+        }
+        .content-body .img {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            cursor: grabbing;
+        }
+
+        .btns {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 4px;
+        }
+
+        input[type="text"] {
+            height: 30px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 80px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        td {cursor: pointer;}
 </style>
 
 <body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="btns">
+                <button class="btn" onclick="resetImg()">원래대로</button>
+                <button class="btn" onclick="imgRotate(-90)">-90</button>
+                <button class="btn" onclick="imgRotate(90)">+90</button>
+                <button class="btn" onclick="imgRotate(180)">180</button>
+              
+            </div>
+            <div class="btns">
+                <button class="btn" onclick="imgZoom('in')">확대</button>
+                <input type="text" value="100%" id="inputZomm" readonly/>
+                <button class="btn" onclick="imgZoom('out')">축소</button>
+            </div>
+            
+            <table class="mt10">
+
+                <thead>
+                    <tr>
+                        <th>파일명</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="content-body">
+            <img src="/images/no_img.png" id="img" class="img"/>
+        </div>
+    </div>
     
 </body>
 
 <script>
+
+    let zoom = '100%'; // 확대 디폴트 값
+    const img = document.querySelector("#img");
+    const inputZomm = document.querySelector("#inputZomm");
+    let degree = 0;
+    const imgContainer = document.querySelector('.content-body');
+
+   const imgData = [
+    { id: '01', title: '이미지1', url: '/images/sample1.jpg'},
+    { id: '02', title: '이미지2', url: '/images/sample2.jpg'},
+    { id: '03', title: '이미지3', url: '/images/sample3.jpg'},
+    { id: '04', title: '이미지4', url: '/images/sample4.jpg'},
+   ];
+
+
+   function resetImg() {
+    img.removeAttribute("style");
+    inputZomm.value = '100%';
+    degree = 0;
+   }
+
    
+    // 마우스 휠 이벤트(축소/확대)
+    function fncMouseWheel(event) {
+        console.log("fncMouseWheel");
+        // const zoomInValueInput = document.querySelector("#zoomVal");
+        console.log("parseInt(zoomInValueInput.value)", parseInt(inputZomm.value))
+        if (event.deltaY < 0) {
+            // 위로 돌렸을 때 (줌 인)
+            if(parseInt(inputZomm.value) < 200) {
+                imgZoom("in");
+                wheelTouchToTop = false;
+            } else {
+                if(!wheelTouchToTop) {
+                    alert("더 이상 확대할 수 없습니다.");
+                }
+                wheelTouchToTop = true;
+            }
+        } else if (event.deltaY > 0) {
+            // 아래로 돌렸을 때 (줌 아웃)
+            if(parseInt(inputZomm.value) > 25) {
+                imgZoom("out");
+                wheelTouchToBottom = false;
+            } else {
+                if(!wheelTouchToBottom) {
+                    alert("더 이상 축소할 수 없습니다.");
+                }
+                wheelTouchToBottom = true;
+            }
+        }
+    }
+
+
+
+   //이미지 영역 마우스 드래그 스크롤 이벤트
+   function imgDrag() {
+
+        let isDragging = false;
+        let startX, startY, initialLeft, initialTop;
+
+        if (img) {
+            const containerWidth = imgContainer.clientWidth;
+            const containerHeight = imgContainer.clientHeight;
+
+            img.addEventListener('mousedown', (e) => {
+                isDragging = true;
+
+                img.style.cursor = "grabbing"
+
+                // 드래그 시작 위치와 이미지의 현재 위치 저장
+                startX = e.clientX;
+                startY = e.clientY;
+                initialLeft = parseFloat(img.style.left || "50%");
+                initialTop = parseFloat(img.style.top || "50%");
+
+                // 기본 드래그 동작 막기
+                e.preventDefault();
+            });
+
+            img.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    // 드래그 중에 이미지의 새로운 위치 계산
+                    const currentX = e.clientX;
+                    const currentY = e.clientY;
+
+                    const deltaX = currentX - startX;
+                    const deltaY = currentY - startY;
+
+                    let newLeft = initialLeft + (deltaX / containerWidth) * 100;
+                    let newTop = initialTop + (deltaY / containerHeight) * 100;
+
+                    // 드래깅 영역 제한
+                    newLeft = newLeft < -10 ? -10 : newLeft;
+                    newLeft = newLeft > 110 ? 110 : newLeft;
+                    newTop = newTop < -10 ? -10 : newTop;
+                    newTop = newTop > 110 ? 110 : newTop;
+
+                    // 드래그 위치 업데이트
+                    img.style.left = newLeft + "%";
+                    img.style.top = newTop + "%";
+                    img.style.cursor = 'grabbing';
+                }
+            });
+
+            img.addEventListener('mouseup', () => {
+                isDragging = false;
+                img.style.cursor = "grab"
+            });
+
+            // 마우스 휠 시 줌인/아웃
+            imgContainer.addEventListener('wheel', fncMouseWheel);
+                    
+        }
+    }
+
+   function clickTd(event) {
+    console.log("click td");
+    const selectedItem = imgData.find((item)=> item.id === event.target.dataset.id);
+    const url = selectedItem.url;
+    console.log("click td", url);
+    img.src = url;
+    fncMouseDragScroll();
+    
+   }
+
+   function createTableBody() {
+        /* table list 생성 */
+        const tbody = document.querySelector("tbody");
+            imgData.forEach((item, index)=>{			
+            const tr = document.createElement("tr");
+            const tdContent = `
+                <td onclick="clickTd(event)" data-id="${item.id}">${item.url}</td>
+            `;
+            tr.innerHTML = tdContent;
+            tbody.appendChild(tr);
+        })
+   }
+
+
+   function imgRotate(_deg = 0) { 
+        let newDeg = _deg === 0 ? 0 : degree + _deg;
+        img.style.transform = `translate(-50%, -50%) rotate(${newDeg}deg)`;
+        degree = newDeg;
+   }
+
+
+   function imgZoom(_condition){
+        let changeZoom = inputZomm.value.trim().replace('%', '');
+        const condition = _condition === "in" ? +25 : -25;
+        if (changeZoom === '') {
+            alert("배율 입력창에 배율을 정확히 입력해주세요.");
+            return false;
+        }
+
+
+        changeZoom = Number(changeZoom) + condition;
+
+        if (changeZoom < 25) {
+            alert("더 이상 축소할 수 없습니다.");
+            return false;
+        }
+
+        if (changeZoom > 200){
+            alert("더 이상 확대할 수 없습니다."); 
+            return false;
+        }
+
+        img.style.zoom = changeZoom + "%";
+        inputZomm.value = changeZoom + '%';
+
+    }
+
+    // 마우스 휠이 끝까지 올라가거나 내려갔는지 체크
+    let wheelTouchToTop = false;
+    let wheelTouchToBottom = false;
+
+
+    
+
+
+
+    function init () {
+        createTableBody();
+
+        imgDrag();
+       
+    }
    
+              
+                
+    document.addEventListener('DOMContentLoaded', init);
 </script>
 
 </html>
